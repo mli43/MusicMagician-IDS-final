@@ -18,9 +18,19 @@ There are a number of features that our appllication can have. At this phase of 
 
 ## Sketches and Data Analysis
 ### Data Processing
-No tables in this dataset contained any null or duplicate values. As a result, we did not feel the need to drop any rows or remove any malformed columns. There was some processing to be done in the Data by Artists table ------- **FILL IN WHATVER WAS DONE** 
+No tables in this dataset contained any null or duplicate values. As a result, we did not feel the need to drop any rows or remove any malformed columns. There was some processing to be done in the full music dataset. More specifically, the type of the artist_name column is string, where it should be a list. However, naively splitting the string with "," is tricky because some artists, such as bands, use comma in their name. This will cause discrepancy between artist name and artist id column, making it impossible to explode the dataset. One method to get around this is to convert the id column into list of ints, and use the data by artist dataset to map back the artist name from the id. 
 
 Additionally, we performed some EDA on all four tables and a subset of our plots from EDA are shown below.
+
+### Full music dataset visualizations
+![This plot displays the correlation between numeric features in the dataset](./eda_notebooks/images/full_music_corr.png, "Full music dataset correlation")
+
+
+![This plot displays the violin plot that shows the distribution of selected features](./eda_notebooks/images/full_music_violin.png, "Selected features distribution")
+
+
+![This plot shows year vs mean explicit in the aggregated-by-year full dataset. More recent songs are more explicit.](./eda_notebooks/images/full_music_year_explicit.png, "Year vs Explicit")
+
 
 #### Data by Year
 
