@@ -23,13 +23,13 @@ No tables in this dataset contained any null or duplicate values. As a result, w
 Additionally, we performed some EDA on all four tables and a subset of our plots from EDA are shown below.
 
 ### Full music dataset visualizations
-![This plot displays the correlation between numeric features in the dataset](eda_notebooks/images/full_music_corr.png "Full music dataset correlation")
+![](eda_notebooks/images/full_music_corr.png "This plot displays the correlation between numeric features in the dataset")
 
 
-![This plot displays the violin plot that shows the distribution of selected features](eda_notebooks/images/full_music_violin.png "Selected features distribution")
+![](eda_notebooks/images/full_music_violin.png "This plot displays the violin plot that shows the distribution of selected features")
 
 
-![This plot shows year vs mean explicit in the aggregated-by-year full dataset. More recent songs are more explicit.](eda_notebooks/images/full_music_year_explicit.png "Year vs Explicit")
+![](eda_notebooks/images/full_music_year_explicit.png "This plot shows year vs mean explicit in the aggregated-by-year full dataset. More recent songs are more explicit.")
 
 
 #### Data by Year
