@@ -15,3 +15,20 @@ There are a number of potential questions we can answer from this dataset. We ho
 3. How does the evolution of music attributes reflect the social, cultural, and technological climate?
 
 There are a number of features that our appllication can have. At this phase of the project, we plan to have hierarchical visualization of how different artists influence each other, a cluster that help visualize the similarity between different genres, and charts and graphs that correlate the most popular music genre and music charasteristic such as danceability with historical events. We will continue to add more and adjust our visualizations as we continue development to ensure we gain a deeper understanding of how music interacts with our daily lives and how music is affect by it. 
+
+## Sketches and Data Analysis
+### Data Processing
+No tables in this dataset contained any null or duplicate values. As a result, we did not feel the need to drop any rows or remove any malformed columns. There was some processing to be done in the Data by Artists table ------- **FILL IN WHATVER WAS DONE** 
+
+Additionally, we performed some EDA on all four tables and a subset of our plots from EDA are shown below.
+
+#### Data by Year
+<img width="650" alt="Screenshot 2023-11-13 at 12 15 19 PM" src="https://github.com/CMU-IDS-Fall-2023/final-project-musicmagicians/assets/80061658/b3b83777-e09b-4d9c-b05c-47fb4f868013">
+This plot displays the correlations between all columns in the dataset. We can observe that year is strongly negatively correlated with certain music characteristics like acousticness and instrumentalness and positively correlated energy and loudness, but less strongly so.
+
+<img width="582" alt="Screenshot 2023-11-13 at 12 11 59 PM" src="https://github.com/CMU-IDS-Fall-2023/final-project-musicmagicians/assets/80061658/7a403657-62a5-4478-9422-83980a5949bc">
+Although years are not taken into acount in these histograms, we can get a sense of the distribution of these features in music over the past century. For the features on a decimal scale, larger values indicate a higher confidence in the presence of that feature and lower values indicate unlikeliness in the presence of that feature.
+
+<img width="634" alt="Screenshot 2023-11-13 at 12 44 32 PM" src="https://github.com/CMU-IDS-Fall-2023/final-project-musicmagicians/assets/80061658/ad92cec2-03e2-4344-9702-0b5aaf6f41f8">
+We observed in the correlation matrix that acousticness and energy were strongly negatively and positively correlated with year, so we plotted both features on the same graph to observe the magnitude and direction of both relationships. Interesting to note is that both features experienced rapid changes starting at around 1950 and leveling off in 1980.
+
