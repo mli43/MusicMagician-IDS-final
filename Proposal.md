@@ -16,7 +16,7 @@ There are a number of potential questions we can answer from this dataset. We ho
 
 There are a number of features that our appllication can have. At this phase of the project, we plan to have hierarchical visualization of how different artists influence each other, a cluster that help visualize the similarity between different genres, and charts and graphs that correlate the most popular music genre and music charasteristic such as danceability with historical events. We will continue to add more and adjust our visualizations as we continue development to ensure we gain a deeper understanding of how music interacts with our daily lives and how music is affect by it. 
 
-## Sketches and Data Analysis
+## Data Analysis
 ### Data Processing
 No tables in this dataset contained any null or duplicate values. As a result, we did not feel the need to drop any rows or remove any malformed columns. There was some processing to be done in the full music dataset. More specifically, the type of the artist_name column is string, where it should be a list. However, naively splitting the string with "," is tricky because some artists, such as bands, use comma in their name. This will cause discrepancy between artist name and artist id column, making it impossible to explode the dataset. One method to get around this is to convert the id column into list of ints, and use the data by artist dataset to map back the artist name from the id. 
 
@@ -51,3 +51,30 @@ Although years are not taken into acount in these histograms, we can get a sense
 <br>
 We observed in the correlation matrix that acousticness and energy were strongly negatively and positively correlated with year, so we plotted both features on the same graph to observe the magnitude and direction of both relationships. Interesting to note is that both features experienced rapid changes starting at around 1950 and leveling off in 1980.
 <br>
+
+### Data by artist
+
+
+### Influence data
+
+
+## Sketches and systen design
+    
+We will have one static dashboard page where the use can view the original four datasets. This will be out home page. We propose to have four pages that contains visualiztions and interactions for each dataset.
+
+### Full music dataset 
+In this page, we plan to implement three tabs in this page. The user can click on one tab and contents in other tabs will be invisible. This is our design decision because we don't want to crowd the page with too many information, visualizations, and interactions.
+
+1. Overview tab: This tab will show the distribution of different features in the dataset such as danceability, valence, acousticness. We want to show some statistical information about the dataset for the user to get some high-level understanding of the dataset.
+2. Songs rank tab: This tab will allow the users to input the desiged range of years to filter from, number of songs to show, and show the users the most or least popular songs in the desired year range. 
+3. Compare songs tab: This tab will allow the user to search for two songs and plot two polar graphs for the two songs side by side. This can provide the user to look at songs of their choosing in more detail.
+
+
+### Data by year
+
+
+### Data by artist
+
+
+### Influence data
+
