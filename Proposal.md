@@ -108,7 +108,7 @@ In this page, we aim to examine how culural changes and advanvements in music te
 
 
 ### Influence data
-![](eda_notebooks/images/inf_sketch.jpg "This plot displays sketch for influence data"){width=520 height=1000}
+<img src="eda_notebooks/images/inf_sketch.jpg" alt="This plot displays sketch for influence data" width="520"/>
 
 
 1. Filtering: This step will feature one year slider and one number input to focus on data of interest specified by the users. In particular, since our influence data spans from 1930 to 2010, and includes 5854 unique artists, the information will overflow if we include all in a single visualization. Thus, we give users their options to focus on specific periods and a selection of artists.
