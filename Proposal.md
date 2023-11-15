@@ -108,7 +108,7 @@ In this page, we aim to examine how culural changes and advanvements in music te
 
 
 ### Influence data
-![](eda_notebooks/images/sketch.png "This plot displays sketch for influence data")
+![](eda_notebooks/images/inf_sketch.jpg "This plot displays sketch for influence data")
 
 1. Filtering: This step will feature one year slider and one number input to focus on data of interest specified by the users. In particular, since our influence data spans from 1930 to 2010, and includes 5854 unique artists, the information will overflow if we include all in a single visualization. Thus, we give users their options to focus on specific periods and a selection of artists.
 2. Artist Network: In influence dataset, each row includes an influencer and his/her follower. This ordered structure naturally induces a directed network of artists, where each node represents an artist, and each outgoing edge indicating the influence. Following the previous selection step, we will visualize a network consisting of top n artists along with their influences on each other.
