@@ -66,8 +66,13 @@ We will have one static dashboard page where the use can view the original four 
 In this page, we plan to implement three tabs in this page. The user can click on one tab and contents in other tabs will be invisible. This is our design decision because we don't want to crowd the page with too many information, visualizations, and interactions.
 
 1. Overview tab: This tab will show the distribution of different features in the dataset such as danceability, valence, acousticness. We want to show some statistical information about the dataset for the user to get some high-level understanding of the dataset.
+![](eda_notebooks/images/full_music_overview_tab.JPG "Sketch of the songs overview tab")
+
 2. Songs rank tab: This tab will allow the users to input the desiged range of years to filter from, number of songs to show, and show the users the most or least popular songs in the desired year range. 
+![](eda_notebooks/images/full_music_rank_songs_tab.JPG "Sketch of the songs ranking tab")
+
 3. Compare songs tab: This tab will allow the user to search for two songs and plot two polar graphs for the two songs side by side. This can provide the user to look at songs of their choosing in more detail.
+![](eda_notebooks/images/full_music_compare_tab.JPG "Sketch of the comparing songs tab")
 
 
 ### Data by year
