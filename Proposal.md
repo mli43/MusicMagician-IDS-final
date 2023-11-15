@@ -56,6 +56,21 @@ We observed in the correlation matrix that acousticness and energy were strongly
 
 
 ### Influence data
+![](eda_notebooks/images/active_year.png "This plot displays the start of career for influencers and followers")
+<br>
+We plot the career start of influencers and followers side-by-side. As shown in the influencer graph, number of influencers reaches a peak around 1960. As shown in the follower graph, number of followers surges around 1990. The lag is reasonable given the influencer-follower dynamic. One surprising aspect is that there is a gap from 1960-1970 in both graphs. Whether this is due to data collection issue or social issue is up to further investigation.
+<br>
+
+![](eda_notebooks/images/genre_dist.png "This plot displays main genres ordered by number of artists")
+<br>
+We plot the distribution of main genres for influencers and followers side-by-side. As shown above, "Pop/Rock" is the most popular genre for both influencers and followers, followed by "R&B", "Country", and "Jazz". For the influencers, the 5th popular genre is "Vocal", while for the followers, it's "Electronic". From this graph, we could also see that the genres are distributed unevenly with a majority class and several minority classes. This indicates in network visualization, we need to pay attention to the number of genre upperbound.
+
+<br>
+
+![](eda_notebooks/images/top10_artists.png "This plot displays top 10 most influential artists from 1930-2010")
+<br>
+We plot a horizontal bar plot of the artists sorted by their number of followers. As shown above, the Beatles is a dominant top artist with more than 600 followers, followed by Bob Dylan, the Rolling Stone, etc.
+<br>
 
 
 ## Sketches and systen design
@@ -93,4 +108,10 @@ In this page, we aim to examine how culural changes and advanvements in music te
 
 
 ### Influence data
+
+1. Filtering: This step will feature one year slider and one number input to focus on data of interest specified by the users. In particular, since our influence data spans from 1930 to 2010, and includes 5854 unique artists, the information will overflow if we include all in a single visualization. Thus, we give users their options to focus on specific periods and a selection of artists.
+2. Artist Network: In influence dataset, each row includes an influencer and his/her follower. This ordered structure naturally induces a directed network of artists, where each node represents an artist, and each outgoing edge indicating the influence. Following the previous selection step, we will visualize a network consisting of top n artists along with their influences on each other.
+3. Genre Network: This step will focus on a larger granularity- influence on the genre level. Similar to step 2, we will incorporate a number input box for number of genres and visualize a relationship graph consisting of top n genres. This will facilitate our understanding of how genres imapce each other.
+![](eda_notebooks/images/sketch.png "This plot displays main genres ordered by number of artists")
+
 
