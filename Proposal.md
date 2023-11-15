@@ -76,7 +76,18 @@ In this page, we plan to implement three tabs in this page. The user can click o
 
 
 ### Data by year
+In this page, we aim to examine how culural changes and advanvements in music technology is reflected in our dataset. This dataset consists of aggregated/averaged characteristics of music created in that year; we aim for this page to be more of an educational one rather than one centered around interactivity.
 
+1. The Rise of Electronic Music
+   We observe a strong negative relationship when we plot energy against acousticness and instrumentalness. Starting in the 1950s with the instroduction of electronic augmentation, we can visually discern how quickly it takes over. This plot is meant to be a line graph.
+2. Faster, Louder, More Explicit
+    This area chart will plot loudness, tempo, and explicitness in one area chart. The challenge of this graph will be working with 3 distinct axes and conveying the context of the axes to the audience without being too confusing.
+4. G-Major and C-Major Rule All Other Keys
+   We observed that the dominant keys over the past century are G-Major and C-Major, which is somewhat common knowledge in the music community. We will display this information in a smaller pie chart to break up the format of the page.
+5. Custom Line or Area Graph Creation (Not shown in sketch)
+   We will add one last graph at the bottom of the page where the user can customize the date range they want to see informaiton from, which characteristics they want to plot, and whether they prefer to have the plot as a line or an area chart. For the sake of generalizability, we will limit the available traits for this graph to be the characteristics on a 0-to-1 scale.
+   
+<img width="520" alt="Screenshot 2023-11-15 at 5 25 48 PM" src="https://github.com/CMU-IDS-Fall-2023/final-project-musicmagicians/assets/80061658/cb86bfce-4920-482c-8625-8d9c1b724c37">
 
 ### Data by artist
 
