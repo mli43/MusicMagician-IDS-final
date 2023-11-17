@@ -147,10 +147,10 @@ In this page, we aim to examine how cultural changes and advancements in music t
 ### Data by artist
 
 In this page, we aim to include artist specific information in the visualizations in separate tabs:
-1. single-artist statistics and summarize the data visually
-2. compare two artists side-by-side
-3. artist ranking based on popularity scores (stacked with song characteristics) 
-4. geo-spatial spread and influence of artists around the world (optionally, upon integrating data)
+1. <strong>Single-artist statistics and summarize the data visually</strong>: this information is encoded for the song characteristics features danceability, energy, valence, tempo, loudness, acousticness, instrumentalness, liveness and, speechiness through a <strong>Radar Chart</strong> along with other artist-specific summary statistics (interactivity through drop-down list of artists or search)
+2. <strong>Compare two artists side-by-side</strong>: compare two artists using the above radar chart and summary statistics by interacting with a drop-down list of artists or search
+3. <strong>Artist ranking based on popularity scores (stacked with song characteristics)</strong>: rank the top and bottom k artists through a <strong>Stacked Bar Chart</strong> of features where k is chosen by the user using a count picker
+4. <strong>Geo-spatial spread and influence of artists around the world (optionally, upon integrating data)</strong>: upon integrating genre and geopraphical data to the file, a <strong>World Artist Distribution and Influence</strong> map can be created, where genre can be encoded through colors or can be an interactive selection by the user
 
 While a [preliminary plan](./eda_notebooks/sketches/dashboard-sketches-artist-ideas-planning.pdf) of what type of charts would be useful to encode these relationships is presented, we may choose to modify or add components to best represent our data.
 
