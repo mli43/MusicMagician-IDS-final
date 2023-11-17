@@ -113,7 +113,7 @@ We plot a horizontal bar plot of the artists sorted by their number of followers
 <br>
 
 
-## Sketches and systen design
+## Sketches and System design
     
 We will have one static dashboard page where the use can view the original four datasets. This will be out home page. We propose to have four pages that contains visualiztions and interactions for each dataset.
 
