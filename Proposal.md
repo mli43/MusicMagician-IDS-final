@@ -150,10 +150,15 @@ In this page, we aim to include artist specific information in the visualization
 1. single-artist statistics and summarize the data visually
 2. compare two artists side-by-side
 3. artist ranking based on popularity scores (stacked with song characteristics) 
-4. geo-spatial spread and influence of artists around the world (maybe)
+4. geo-spatial spread and influence of artists around the world (optionally, upon integrating data)
 
 While a [preliminary plan](./eda_notebooks/sketches/dashboard-sketches-artist-ideas-planning.pdf) of what type of charts would be useful to encode these relationships is presented, we may choose to modify or add components to best represent our data.
 
+![](./eda_notebooks/sketches/01-artist-sketch.jpeg)
+
+![](./eda_notebooks/sketches/02-artist-sketch.jpeg)
+
+![](./eda_notebooks/sketches/03-artist-sketch.jpeg)
 
 
 ### Influence data
