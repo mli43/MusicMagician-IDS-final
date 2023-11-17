@@ -65,6 +65,35 @@ We observed in the correlation matrix that acousticness and energy were strongly
 
 ### Data by artist
 
+The data contained in the dataset used to construct the following charts was [cleaned_data_by_artist.csv](https://drive.google.com/file/d/1bJRKXG0wm7QNhmXMgQ7U1HQEzgYl0EAU/view?usp=drive_link). A point to note is that the data in this file only documents popularity for artists from 1921 to ~2008 and not 2020 which explains why the most popular and unpopular artists from the charts do not reflect the current status. Furthermore, the charts for this file were built using vega-altair. So, if you would like to see the interactive version of the charts with tooltips, please navigate to the [notebooks](eda_notebooks).
+<br>
+
+![](./eda_notebooks/images/01-top-25-most-popular-artists-by-popularity-score.png)
+
+<br>
+This chart ranks the Top 25 most popular artists in the dataset based on the popularity score. While <strong>El Guincho</strong> is the most popular artist based on popularity score, some familiar names like <strong>Billie Eilish</strong>, <strong>Camila Cabello</strong> and, <strong> Harry Styles</strong> also make the rankings.
+<br>
+<br>
+
+![](eda_notebooks/images/02-bottom-40-most-unpopular-artists-by-popularity-score.png)
+
+<br>
+This chart ranks the Bottom 40 - unpopular artists in the dataset based on the popularity score. Since the chart displays the rankings in descending order of rankings, the unpopular artists is are at the bottom of the chart. 33 artists have a popularity score of 0. They have no bars in the chart.
+<br>
+<br>
+
+![](eda_notebooks/images/03-relationships-between-popularity_score-count-duration_ms-and-other-featues-for-the-artist-dataset.png)
+
+<br>
+To understand the all the relationships between features in the dataset, a multi-scatter plot was generated. The chart was useful in visualizing the overall distribution of the points for the specific features.
+<br>
+<br>
+
+![](eda_notebooks/images/04-heatmap-with-cross-highlight-between-energy-loudness-and-popularity-score_color-encoded.png)
+
+<br>
+Lastly, a heatmap to cross-highlight the relationship between energy, loudness and popularity was constructed. Loudness is highly correlated to popularity, closely followed by energy. The binned heatmap reveals the combination of loudness and energy values with high popularity scores. An overlay plot of energy and loudness was plotted to visualize the relationship between them.
+<br>
 
 ### Influence data
 ![](eda_notebooks/images/active_year.png "This plot displays the start of career for influencers and followers")
