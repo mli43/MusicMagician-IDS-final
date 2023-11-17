@@ -103,7 +103,7 @@ We plot the career start of influencers and followers side-by-side. As shown in 
 
 ![](eda_notebooks/images/genre_dist.png "This plot displays main genres ordered by number of artists")
 <br>
-We plot the distribution of main genres for influencers and followers side-by-side. As shown above, "Pop/Rock" is the most popular genre for both influencers and followers, followed by "R&B", "Country", and "Jazz". For the influencers, the 5th popular genre is "Vocal", while for the followers, it's "Electronic". From this graph, we could also see that the genres are distributed unevenly with a majority class and several minority classes. This indicates in network visualization, we need to pay attention to the number of genre upperbound.
+We plot the distribution of main genres for influencers and followers side-by-side. As shown above, "Pop/Rock" is the most popular genre for both influencers and followers, followed by "R&B", "Country", and "Jazz". For the influencers, the 5th popular genre is "Vocal", while for the followers, it's "Electronic". From this graph, we could also see that the genres are distributed unevenly with a majority class and several minority classes. This indicates in network visualization, we need to pay attention to the number of genre upper bound.
 
 <br>
 
@@ -115,7 +115,7 @@ We plot a horizontal bar plot of the artists sorted by their number of followers
 
 ## Sketches and System design
     
-We will have one static dashboard page where the use can view the original four datasets. This will be out home page. We propose to have four pages that contains visualiztions and interactions for each dataset.
+We will have one static dashboard page where the use can view the original four datasets. This will be out home page. We propose to have four pages that contains visualizations and interactions for each dataset.
 
 ### Full music dataset 
 In this page, we plan to implement three tabs in this page. The user can click on one tab and contents in other tabs will be invisible. This is our design decision because we don't want to crowd the page with too many information, visualizations, and interactions.
@@ -131,20 +131,29 @@ In this page, we plan to implement three tabs in this page. The user can click o
 
 
 ### Data by year
-In this page, we aim to examine how culural changes and advanvements in music technology is reflected in our dataset. This dataset consists of aggregated/averaged characteristics of music created in that year; we aim for this page to be more of an educational one rather than one centered around interactivity.
+In this page, we aim to examine how cultural changes and advancements in music technology is reflected in our dataset. This dataset consists of aggregated/averaged characteristics of music created in that year; we aim for this page to be more of an educational one rather than one centered around interactivity.
 
 1. The Rise of Electronic Music
-   We observe a strong negative relationship when we plot energy against acousticness and instrumentalness. Starting in the 1950s with the instroduction of electronic augmentation, we can visually discern how quickly it takes over. This plot is meant to be a line graph.
+   We observe a strong negative relationship when we plot energy against acousticness and instrumentalness. Starting in the 1950s with the introduction of electronic augmentation, we can visually discern how quickly it takes over. This plot is meant to be a line graph.
 2. Faster, Louder, More Explicit
     This area chart will plot loudness, tempo, and explicitness in one area chart. The challenge of this graph will be working with 3 distinct axes and conveying the context of the axes to the audience without being too confusing.
 4. G-Major and C-Major Rule All Other Keys
    We observed that the dominant keys over the past century are G-Major and C-Major, which is somewhat common knowledge in the music community. We will display this information in a smaller pie chart to break up the format of the page.
 5. Custom Line or Area Graph Creation (Not shown in sketch)
-   We will add one last graph at the bottom of the page where the user can customize the date range they want to see informaiton from, which characteristics they want to plot, and whether they prefer to have the plot as a line or an area chart. For the sake of generalizability, we will limit the available traits for this graph to be the characteristics on a 0-to-1 scale.
+   We will add one last graph at the bottom of the page where the user can customize the date range they want to see information from, which characteristics they want to plot, and whether they prefer to have the plot as a line or an area chart. For the sake of generalizability, we will limit the available traits for this graph to be the characteristics on a 0-to-1 scale.
    
 <img width="520" alt="Screenshot 2023-11-15 at 5 25 48 PM" src="https://github.com/CMU-IDS-Fall-2023/final-project-musicmagicians/assets/80061658/cb86bfce-4920-482c-8625-8d9c1b724c37">
 
 ### Data by artist
+
+In this page, we aim to include artist specific information in the visualizations in separate tabs:
+1. single-artist statistics and summarize the data visually
+2. compare two artists side-by-side
+3. artist ranking based on popularity scores (stacked with song characteristics) 
+4. geo-spatial spread and influence of artists around the world (maybe)
+
+While a [preliminary plan](./eda_notebooks/sketches/dashboard-sketches-artist-ideas-planning.pdf) of what type of charts would be useful to encode these relationships is presented, we may choose to modify or add components to best represent our data.
+
 
 
 ### Influence data
@@ -153,7 +162,7 @@ In this page, we aim to examine how culural changes and advanvements in music te
 
 1. Filtering: This step will feature one year slider and one number input to focus on data of interest specified by the users. In particular, since our influence data spans from 1930 to 2010, and includes 5854 unique artists, the information will overflow if we include all in a single visualization. Thus, we give users their options to focus on specific periods and a selection of artists.
 2. Artist Network: In influence dataset, each row includes an influencer and his/her follower. This ordered structure naturally induces a directed network of artists, where each node represents an artist, and each outgoing edge indicating the influence. Following the previous selection step, we will visualize a network consisting of top n artists along with their influences on each other.
-3. Genre Network: This step will focus on a larger granularity- influence on the genre level. Similar to step 2, we will incorporate a number input box for number of genres and visualize a relationship graph consisting of top n genres. This will facilitate our understanding of how genres imapce each other.
+3. Genre Network: This step will focus on a larger granularity- influence on the genre level. Similar to step 2, we will incorporate a number input box for number of genres and visualize a relationship graph consisting of top n genres. This will facilitate our understanding of how genres impact each other.
 
 
 
