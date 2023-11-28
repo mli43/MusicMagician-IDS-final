@@ -3,14 +3,15 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import matplotlib.pyplot as plt
+import datetime
 
 # load data
 df = pd.read_csv('Data/full_music_data.csv')
 
-df.release_date = pd.to_datetime(df.release_date, format='mixed')
-df.drop_duplicates(subset=['song_title (censored)'])
+df.drop_duplicates(subset=['song_title (censored)'], inplace=True, keep='first')
 
-df = df[df['release_date'] < '2023-12-01']
+df['release_date'] = pd.to_datetime(df['release_date'], format='mixed')
+df = df[ df['release_date'] < datetime.datetime(2023, 12, 1) ]
 
 st.title("Data by Song")
 
@@ -21,7 +22,6 @@ st.dataframe(df)
 
 # Numeric columns only
 subset = df[df.columns[2:-2]]
-
 
 tab1, tab2, tab3 = st.tabs(['Overview', 'Song Ranking', 'Song Comparison'])
 
@@ -37,11 +37,11 @@ with tab1:
 
 with tab2:
     st.header("Song ranking")
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     date_range = st.slider(
             "Range",
-            df['release_date'].min().to_pydatetime(), 
-            df['release_date'].max().to_pydatetime(),
+            df['release_date'].min(), 
+            df['release_date'].max(),
             (
                 df['release_date'].min().to_pydatetime(), df['release_date'].max().to_pydatetime()
                 )
@@ -54,8 +54,46 @@ with tab2:
                 )
 
 
-    with col2:
+    with col3:
         reverse = st.checkbox("Rank by least popular?")
+
+    rank_subset = df[df['release_date'] >= date_range[0]]
+    rank_subset = rank_subset[rank_subset['release_date'] <= date_range[1]]
+
+
+
+    if not reverse:
+        rank_subset.sort_values(by=['popularity'], ascending=False, inplace=True)
+        with col2:
+            pop_floor = st.number_input(
+                    "Highest popularity to show",
+                    0, int(max(rank_subset['popularity'].unique())), int(max(rank_subset['popularity'].unique()))
+                    )
+            rank_subset = rank_subset[rank_subset['popularity'] <= pop_floor]
+    else:
+        rank_subset.sort_values(by=['popularity'], inplace=True)
+        with col2:
+            pop_ceil = st.number_input(
+                    "Lowest popularity to show",
+                    int(min(rank_subset['popularity'].unique())), int(max(rank_subset['popularity'].unique())), int(min(rank_subset['popularity'].unique()))
+                    )
+            rank_subset = rank_subset[rank_subset['popularity'] >= pop_ceil]
+
+    st.dataframe(rank_subset.iloc[:num_top, [-1,-3, -2, -4, 0]])
+
+
+def format_option(row):
+    st.markdown(row)
+    return row['song_title (censored)'] + "by " + row['artist_names']
+
+df['song_artist'] = df['song_title (censored)'] + " by " + df['artist_names']
 
 with tab3:
     st.header("Song Comparison")
+
+    songs = st.multiselect("Select songs to compare", df['song_artist']) 
+
+    comp_subset = df[ df['song_artist'].isin(songs) ]
+
+
+    st.dataframe(comp_subset)
