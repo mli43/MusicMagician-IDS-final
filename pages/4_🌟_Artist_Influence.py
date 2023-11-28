@@ -5,7 +5,7 @@ import altair as alt
 import networkx as nx 
 from streamlit_agraph import agraph, Node, Edge, Config
 
-df = pd.read_csv('data/influence_data.csv')
+df = pd.read_csv('Data/influence_data.csv')
 
 c1,c2,c3 = st.columns(3)
 
