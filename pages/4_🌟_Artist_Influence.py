@@ -61,8 +61,8 @@ for row in topn_data.itertuples(index = False):
 
         
 st.title(f"Top {top_num} Influencers Network")
-config = Config(width=400,
-                height=400,
+config = Config(width=600,
+                height=600,
                 directed=True, 
                 physics=True, 
                 hierarchical=False,

@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
-import plotly.graph_objects as go
 
 # Load Data
 df = pd.read_csv('Data/data_by_year.csv')
