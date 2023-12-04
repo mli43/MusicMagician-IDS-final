@@ -25,7 +25,6 @@ st.title("Data by Song")
 st.markdown("This interactive page allows you to explore characteristics of different songs. You can navigate to the overview tabs to view the full music distribution, the song ranking tab to see top or least favored songs in different time range, and the comparison tab to compare characteristics of different songs")
 
 df.iloc[:, 2:14] = df.iloc[:, 2:14].astype('float')
-st.dataframe(df.describe())
 
 # Numeric columns only
 subset = df[df.columns[2:-2]]
