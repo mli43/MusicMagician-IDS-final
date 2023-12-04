@@ -138,8 +138,6 @@ with tab3:
 
     cols = ["danceability", "energy", "valence", "acousticness", "instrumentalness", "liveness", "speechiness"]
 
-    comp_subset[cols] = comp_subset[cols]*10
-
     plot_data = list()
     for song in songs:
         song_row = comp_subset[comp_subset['song_artist'] == song].squeeze()
