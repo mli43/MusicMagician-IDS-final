@@ -16,17 +16,25 @@ st.write(
     """
 The visualizations on this page aim to examine how cultural changes and 
 advancements in music technology are reflected in music characteristics and 
-vice versa.
+vice versa. The values in this dataset were found by aggregating the values for
+each song in a given year in the full dataset in an attempt to represent the
+"average" values for that year.
+\n
+The data for each visualization can be found in the "Data" of the respective graph.
     """
 )
 
 st.divider()
 
 st.header("The Rise of Electronic Music")
-fig = px.line(df, x="year", y=["energy", "acousticness", "instrumentalness"],
-              title="Energy, Acousticness, and Instrumentalness Over Time")
-fig.update_layout(xaxis_title='Year', yaxis_title='Value')
-st.plotly_chart(fig, use_container_width=True)
+tab1, tab2 = st.tabs(["Plot", "Data"])
+with tab1:
+    fig = px.line(df, x="year", y=["energy", "acousticness", "instrumentalness"],
+                title="Energy, Acousticness, and Instrumentalness Over Time")
+    fig.update_layout(xaxis_title='Year', yaxis_title='Value')
+    st.plotly_chart(fig, use_container_width=True)
+with tab2:
+    st.dataframe(df[['year', 'energy', 'acousticness', 'instrumentalness']])
 
 st.write(
     """
@@ -36,22 +44,30 @@ in music experienced a stark decline starting in the 1950s and leveling off
 around 1980, while energy saw a steady increase over the same time period. Since
 then, all three characteristics have remained relatively stable.
 \n
-The 1940s and 1950s saw the invention of synthesizers, which in simplified
+The 1950s saw the invention of synthesizers, which in simplified
 terms is are machines that generate audio signals via electronic means. Prior to
 the onset of the synthesizer, new electronic instruments like the electric 
 guitar, electric bass, and electric keyboard had begun to emerge and rapidly
 gain popularity.
-
+\n
+The 1970s experienced a boom in electronic music as synthesizers became more
+portable and widely available. It was these improvements that standardized the
+concept of synthesizers as self-contained instruments with built-in keyboards.
     """
 )
 
 st.divider()
 
 st.header("Faster, Louder, More Explicit")
-fig = px.area(df, x="year", y="loudness",
-              title="Average Loudness of Songs Over Time")
-fig.update_layout(xaxis_title='Year', yaxis_title='Decibels')
-st.plotly_chart(fig, use_container_width=True)
+tab1, tab2 = st.tabs(["Plot", "Data"])
+with tab1:
+    fig = px.area(df, x="year", y="loudness",
+                title="Average Loudness of Songs Over Time")
+    fig.update_layout(xaxis_title='Year', yaxis_title='Decibels')
+    st.plotly_chart(fig, use_container_width=True)
+with tab2:
+    st.dataframe(df[['year', 'loudness']])
+
 st.write(
     """
 The values in this feature may be difficult to interpret, but in the context of
@@ -65,10 +81,15 @@ become louder and louder.
     """
 )
 
-fig = px.line(df, x="year", y="tempo",
-              title="Tempo of Songs Over Time")
-fig.update_layout(xaxis_title='Year', yaxis_title='Beats per Minute')
-st.plotly_chart(fig, use_container_width=True)
+tab1, tab2 = st.tabs(["Plot", "Data"])
+with tab1:
+    fig = px.line(df, x="year", y="tempo",
+                title="Tempo of Songs Over Time")
+    fig.update_layout(xaxis_title='Year', yaxis_title='Beats per Minute')
+    st.plotly_chart(fig, use_container_width=True)
+with tab2:
+    st.dataframe(df[['year', 'tempo']])
+
 st.write(
     """
 Interestingly, we also see a strong change in the average tempo of songs between
@@ -79,14 +100,31 @@ states.
     """
 )
 
-fig = px.area(df, x="year", y="explicitness",
-              title="Proportion of Songs Containing Explicitness Over Time")
-fig.update_layout(xaxis_title='Year', yaxis_title='Proportion of Songs')
-st.plotly_chart(fig, use_container_width=True)
+tab1, tab2 = st.tabs(["Plot", "Data"])
+with tab1:
+    fig = px.area(df, x="year", y="explicitness",
+                title="Proportion of Songs Containing Explicitness Over Time")
+    fig.update_layout(xaxis_title='Year', yaxis_title='Proportion of Songs')
+    st.plotly_chart(fig, use_container_width=True)
+with tab2:
+    st.dataframe(df[['year', 'explicitness']])
+
 st.write(
     """
 In recent years, almost a quarter of music on Spotify contains some degree of
-explicitness; prior to 1980, this proportion was less than 1%.
+explicitness; prior to 1980, this proportion was less than 1%. These values may
+potentially be slightly smaller than true values, as in this parrticular dataset,
+a value of 0 for explicitness could also mean that the explicitness of the song
+is unknown.
+\n
+The rise of explicitness in music is likely due to a combination of factors,
+one of which could be Western culture's increasing acceptance of more graphic
+topic which have become more prevalent in music over time. However, from listening
+to older music, many users can likely observe that older music defers more towards
+euphemisms than outright explicitness; we postulate then that cultural liberalism
+plays a significant role in the stark increase in explicitness in music that we 
+see in this data in addition to strong shifts in topics in music, which is still
+likely the largest factor in this change.  
     """
 )
 
@@ -118,11 +156,15 @@ with col1:
     )
 
 with col2:
+    tab1, tab2 = st.tabs(["Plot", "Data"])
     temp = df.key.value_counts()
-    fig = px.pie(temp, values=df.key.value_counts(), names=df.key.unique(),
-                title='Average Key Distribution of Songs, 1921-2020')
-    fig.update_layout(legend_title_text='Key')
-    st.plotly_chart(fig, use_container_width=True)
+    with tab1:
+        fig = px.pie(temp, values=df.key.value_counts(), names=df.key.unique(),
+                    title='Average Key Distribution of Songs, 1921-2020')
+        fig.update_layout(legend_title_text='Key')
+        st.plotly_chart(fig, use_container_width=True)
+    with tab2:
+        st.dataframe(temp)
 
 st.divider()
 
@@ -163,6 +205,18 @@ with tab1:
 
 with tab2:
     st.dataframe(df_filtered)
+
+
+st.divider()
+
+st.subheader("References")
+
+st.write(
+"""
+- [Synthesizer, Wikipedia](https://en.wikipedia.org/wiki/Synthesizer)
+
+"""
+)
 
 
 # References
