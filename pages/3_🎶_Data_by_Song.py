@@ -9,17 +9,9 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
 
-# load data
-# df = pd.read_csv('../data/full_music_data.csv')
-# 
-# df.drop_duplicates(subset=['song_title (censored)'], inplace=True, keep='first')
-# 
-# df['release_date'] = pd.to_datetime(df['release_date'], format='mixed')
-# df = df[ df['release_date'] < datetime.datetime(2023, 12, 1) ]
-
 
 df = pd.read_csv('data/full_music_filtered_by_date.csv')
-df['release_date'] = pd.to_datetime(df['release_date'], format='mixed')
+df['release_date'] = pd.to_datetime(df['release_date'])
 
 st.title("Data by Song")
 

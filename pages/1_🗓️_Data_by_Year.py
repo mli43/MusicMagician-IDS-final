@@ -20,6 +20,8 @@ vice versa.
     """
 )
 
+st.divider()
+
 st.header("The Rise of Electronic Music")
 fig = px.line(df, x="year", y=["energy", "acousticness", "instrumentalness"],
               title="Energy, Acousticness, and Instrumentalness Over Time")
@@ -43,6 +45,7 @@ gain popularity.
     """
 )
 
+st.divider()
 
 st.header("Faster, Louder, More Explicit")
 fig = px.area(df, x="year", y="loudness",
@@ -87,7 +90,7 @@ explicitness; prior to 1980, this proportion was less than 1%.
     """
 )
 
-
+st.divider()
 
 st.header("G and A# Rule All Other Keys")
 col1, col2 = st.columns(2)
@@ -120,6 +123,7 @@ with col2:
     fig.update_layout(legend_title_text='Key')
     st.plotly_chart(fig, use_container_width=True)
 
+st.divider()
 
 st.header("Evolution of Music Characteristics Over Time")
 st.write(
