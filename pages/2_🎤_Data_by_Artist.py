@@ -18,7 +18,8 @@ st.markdown("This interactive page allows you to explore information about the d
 # Load Data
 df_artist = pd.read_csv("./processed-data/cleaned_data_by_artist.csv")
 
-# st.dataframe(df_artist)
+st.dataframe(df_artist)
+st.dataframe(df_artist.describe())
 
 # Separate Tabs
 
@@ -31,7 +32,7 @@ with tab1:
                  df_artist["artist_name"].sort_values(),
                  placeholder="Choose artist")
     
-    cols = ["danceability", "energy", "valence", "loudness", "acousticness", "instrumentalness", "liveness", "speechiness"]
+    cols = ["danceability", "energy", "valence", "acousticness", "instrumentalness", "liveness", "speechiness"]
     artist_row = df_artist[df_artist["artist_name"] == artist_choice].squeeze()
     # print(artist_row)
     
@@ -58,7 +59,7 @@ with tab2:
     
     # print(artist_choices)
     
-    cols = ["danceability", "energy", "valence", "loudness", "acousticness", "instrumentalness", "liveness", "speechiness"]
+    cols = ["danceability", "energy", "valence", "acousticness", "instrumentalness", "liveness", "speechiness"]
 
     plot_data = list()
 
@@ -90,8 +91,8 @@ with tab3:
     
     bottom_k_df = df_filtered.sort_values(by="popularity", ascending=False).tail(k)
     
-    print(top_k_df)
-    print(bottom_k_df)
+    # print(top_k_df)
+    # print(bottom_k_df)
     
     col1, col2 = st.columns(2)
     
