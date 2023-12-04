@@ -6,8 +6,15 @@ st.title('Exploring Music Characteristics ')
 
 st.header("Header")
 
+st.divider()
+
 st.subheader("Music Characteristic Definitions")
 
+st.write(
+"""
+
+"""
+)
 
 
 # Reference

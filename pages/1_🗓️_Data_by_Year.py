@@ -118,7 +118,8 @@ with col1:
     )
 
 with col2:
-    fig = px.pie(df, values=df.key.value_counts(), names=df.key.unique(),
+    temp = df.key.value_counts()
+    fig = px.pie(temp, values=df.key.value_counts(), names=df.key.unique(),
                 title='Average Key Distribution of Songs, 1921-2020')
     fig.update_layout(legend_title_text='Key')
     st.plotly_chart(fig, use_container_width=True)
