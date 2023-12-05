@@ -30,12 +30,33 @@ tab1, tab2, tab3 = st.tabs(['Overview', 'Song Ranking', 'Song Comparison'])
 # Show overview graphs
 with tab1:
     st.header("Dataset distribution")
+    st.markdown("""
+        This tab is a static tab that shows the original dataset, and the overall dataset distribution, including the table containing the statistical information of the numerical features and their correlation matrix of the entire dataset""")
+
+    st.subheader("Originl Dataset")
+    st.dataframe(df)
+
+    st.subheader("Statistics of numerical features")
+    st.dataframe(df.describe())
+
+    st.subheader("Correlation matrix of numerical features")
+    st.markdown("""
+        Here is the correlation matrix of the numerical features of the entire
+        dataset. Interestingly, there actually isn't too much interesting
+        correlations between features except for those who are inherently
+        correlated (e.g. energy songs are usually loud, but also low in
+            acousticness). One interesting fact is that popularity seem to be
+        correlated with year, but this is highly likely to be a case of
+        correlation without causation
+    """)
+
     f = plt.figure(figsize=(15,15))
     plt.matshow(subset.corr(), fignum=f.number)
     plt.xticks(range(subset.select_dtypes(['number']).shape[1]), subset.select_dtypes(['number']).columns, fontsize=14, rotation=45)
     plt.yticks(range(subset.select_dtypes(['number']).shape[1]), subset.select_dtypes(['number']).columns, fontsize=14)
     cb = plt.colorbar()
     cb.ax.tick_params(labelsize=14)
+
     st.pyplot(f)
 
 
@@ -43,11 +64,14 @@ with tab1:
 # Show song rankings
 with tab2:
     st.header("Top & bottom k songs")
+    st.markdown("""
+        Use the interactive widgets in this tab to filter the original dataset to view the most and least popular songs. You can also hover over the graph to see specific popularity score of the song!
+    """)
     col1, col2 = st.columns(2)
     with col1:
         # filter by date
         date_range = st.slider(
-                "Range",
+                "Time Range",
                 df['release_date'].min(), 
                 df['release_date'].max(),
                 (
@@ -68,7 +92,7 @@ with tab2:
     rank_subset = rank_subset[rank_subset['popularity'] != 0]
 
     # cap max popularity
-    cap_pop = st.slider("Maximum/minimum popularity of shown songs",
+    cap_pop = st.slider("Minumum/Maximum popularity of shown songs",
                 int(rank_subset['popularity'].min()),
                 int(rank_subset['popularity'].max()),
                 (int(rank_subset['popularity'].min()), int(rank_subset['popularity'].max()))
@@ -120,11 +144,15 @@ df['song_artist'] = df['song_title (censored)'] + " by " + df['artist_names']
 
 with tab3:
     st.header("Song Comparison")
+    st.markdown("""
+        In this tab, you can freely select up to 6 songs present in the original dataset to view and compare the different features of the songs. You can also interact with the graph such as zoom in and hide multiple songs to make comparison easier!
+    """)
 
     songs = st.multiselect("Select up to 6 songs to compare", df['song_artist'].sort_values(),
             placeholder="Choose songs", 
             max_selections = 6,
-            default = ["New Rules by ['Dua Lipa']"]) 
+            default = ["Stuck with U (with Justin Bieber) by ['Ariana Grande', 'Justin Bieber']",
+                "I Know You Care by ['Ellie Goulding']"]) 
 
     comp_subset = df[ df['song_artist'].isin(songs) ]
 

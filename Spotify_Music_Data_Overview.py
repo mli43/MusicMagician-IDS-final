@@ -2,12 +2,23 @@ import streamlit as st
 
 st.title('Exploring Music Characteristics and Artist Relationships')
 
-st.header("Header")
+st.subheader("Motivation")
 
 st.write(
 """
-NEED TO POPULATE THIS AREA WITH THE MOTIVATION FOR THIS APPLICATION AND
-WHAT WE AIM TO SHOW
+Music has been an integral part of human societies for centuries. Thanks to
+rapid advances in technology, we are presented with this great opportunity to
+explore how music has influenced the collective human experience. Our goal is
+to visualize the evolution of music multiple perspectives, such as from the
+traditional time perspective, artist perspective, songs characteristic
+perspective, and artist influence.
+\n
+There are a number of interesting questions that we think our dataset and our
+visualizations can help to answer. 
+1. 
+2. 
+3. Does the individual song's characteristic affect its popularity?
+4. 
 """
 )
 
@@ -55,7 +66,10 @@ the sidebar. A brief description of the pages are as follows:
 - Data by Artist
     - add description here
 - Data by Song
-    - add description here
+    - In this page, we explore and compare different characteristics of the
+      full music dataset. We provide the user with the opportunity to examine
+      individual songs freely in more details, and allow the user to compare
+      characteristics of different songs
 - Artist Influence
     - add description here
 """
