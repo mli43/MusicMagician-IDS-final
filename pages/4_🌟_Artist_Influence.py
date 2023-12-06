@@ -55,7 +55,8 @@ all_artists_dup = pd.concat([inf, flw])
 # we treat each id as a unit, to show the rise and fall of different genres
 id_genre = all_artists_dup[['id','genre']]
 id_genre_unique = id_genre.drop_duplicates()
-genre_counts = pd.DataFrame(id_genre_unique['genre'].value_counts()).reset_index()
+genre_counts = pd.read_csv('Data/genre_counts.csv')
+
 #st.write('genre counts')
 #st.write(genre_counts)
 
@@ -79,11 +80,15 @@ with tab2:
 
 
 	top4_genres = genre_counts.head(top_g)['index']
+	st.write(genre_counts)
+	st.write(top4_genres )
 	id_genre_start = all_artists_dup[['id','genre','start']].drop_duplicates()
 	id_genre_start_top4 = id_genre_start[id_genre_start['genre'].isin(top4_genres)]
 	year_genre_counts = pd.pivot_table(id_genre_start_top4 , index = 'start',columns = 'genre', aggfunc = 'count').fillna(0)
 	year_genre_counts = year_genre_counts['id']
 	year_genre_counts = year_genre_counts.reset_index()
+	
+
 	genre_viz = year_genre_counts.melt(id_vars=["start"],
 	        var_name="Genre",
 	        value_name="Value")
