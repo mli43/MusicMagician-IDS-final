@@ -106,7 +106,7 @@ with tab2:
 
     fig1 = alt.Chart(
             rank_subset.tail(k)[::-1],
-            title=f"Top {k} popular songs"
+            title=f"Top {k} most popular songs"
         ).mark_bar().encode(
             alt.X("popularity:Q"),
             alt.Y("song_title (censored):N", sort=("-x")),
