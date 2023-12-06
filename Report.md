@@ -19,7 +19,26 @@ music and artists.
 
 ## 2 Related Work
 
+For the Data by Year page of this application, we incorporated information that
+aims to provide some context for trends in the data. We conducted research into
+the history of Western music in the 20th century, as Western music makes up the 
+bulk of this dataset. The sources we used for contextual information to explain
+these trends are cited at the bottom of each page, if any souurces were used.
+The trajectory of our research was dictated by first inspecting the trends in 
+the Data by Year dataset, picking out notable changes in the trends (eg. a large
+change in the values for acousticness starting in the 1950s), and using that as
+a starting point for events to look into.
+
 ## 3 Methods
+
+### 3.1 Data by Year
+This page inspects the Data by Year dataset which aggregates the music characteristic
+values of all songs in the dataset released in the same year. Below, we discuss
+the content shown on this page and the design of its layout.
+
+#### 3.1.1 Page Content
+
+#### 3.1.2 Page Design
 
 ### 3.3 Data by Song
 In this section, we summarize the steps we took for data cleaning, design choices, and developing Streamlit application for the Data by Song page. 
