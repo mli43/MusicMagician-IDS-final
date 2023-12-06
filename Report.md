@@ -87,6 +87,16 @@ specifically, matplotlib was used to create the static correlation matrix in the
 overview tab, altair was used to create the dynamic song ranking bar plot, and
 plotly was used to create the dynamic song comparison polar plot. 
 
+### 3.4 Music Influence
+#### 3.4.1 Data Preparation
+The influence dataset proves to be pretty neat without null values or duplicates. There are two unique attributes about this dataset. Firstly, it contains 42770 influencer-follower relationships. Secondly, this dataset has a "main genre" feature associated with each artist, which is found in no other datasets. To best leverage both, we analyze the data at "genre" level and "influencer" level. When computing statistics at genre level, "influencers" and "followers" are "equivalent"- both are artists. So we prepare a "full_artists" dataframe that vertically stack influencer and follower data. When focusing on influencer level, we aim to answer questions such as "who is the most impactful artist of all time?" Thus, we prepare another "influencer" dataframe, extracting information only regarding the influencers. With these datasets prepared, we efficiently pave way for following steps. 
+
+#### 3.4.2 Key Techniques
+Among various data manipulation techniques, the most creative one must be the "pivot-melt" approach for constructing the "Artist Population In Top N Genres Over Time", which is a stacked distribution chart. Pivot table is an efficient technique to re-structure our dataframe so that one of its column contents may be pivoted as the row, making subtotal/total summary extra convenient. After we obtain this summary pivot table, we "melt" it to conform to the input standard of altair, reformating a wide dataframe to a long one. These transformations make our analysis flexible and efficient. 
+
+#### 3.4.3 Visualization Highlight
+One highlight of this section is our incorporation of network visualizations. A network is a graph consisting of nodes and edges. Based on our research, there are various ways to visualize a network via libraries such as "networkx", "pyvis", etc. To cater to the interactive nature of our app, however, we choose a library that 1) is compatible with streamlit, 2) is fun to interact with. "streamlit-agraph" perfectly meets our criteria. It not only allows users to add nodes and edges with customized attribtues, but also provides an interactive interface where user could "drag" the network around to inspect the details. We implemented networks for both genres and artists for the audience to fully explore the dynamics.
+
 ## 4 Results
 
 ### 4.3 Data by Song
