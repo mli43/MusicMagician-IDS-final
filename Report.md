@@ -91,17 +91,30 @@ plotly was used to create the dynamic song comparison polar plot.
 
 ### 4.3 Data by Song
 
-Overview tab:
-Song Ranking tab:
+#### 4.3.1 Overview tab:
+This is the correlation matrix shown in the overview tab. 
+
+![](eda_notebooks/images/full_music_corr.png "This plot displays the correlation between numeric features in the dataset")
+
+#### 4.3.2 Song Ranking tab:
 This is an example of the visualization created in the song ranking tab for top
 songs ranking. The date range for this graph is from 2000-1-11 to 2020-6-16,
 with a k of 15 and a maximum popularity of 94.
-![Song ranking tab top song example](./assets/top_15_songs_2000_2020.png)
+![Song ranking tab top song example](./assets/top_15_songs_2000_2020.png "This plot displays the top 15 songs fron 2000-1-11 to 2020-6-16.")
 
 This is an example of the visualization created in the song ranking tab for
 bottom songs ranking. The date range for this graph is from 2000-1-11 to
 2020-6-16, with a k of 15 and a minimum popularity of 10.
-![Song ranking tab bottom song example](./assets/bottom_15_songs_2000_2020.png)
+![Song ranking tab bottom song example](./assets/bottom_15_songs_2000_2020.png "This plto displays the bottom 15 least popular songs from 2000-1-11 to 2022-6-16 with a popularity of at least 10.")
+
+#### 4.3.3 Song comparison tab:
+This is an example of the visualization created in the song comparison tab. The
+two songs chosen are "Stuck with U (with Justin Bieber) by ['Ariana Grande',
+'Justin Bieber']" and "I Know You Care by ['Ellie Goulding']". The reason for
+choosing the two songs is because they have distinct characteristics and show up
+very differently in song ranking.
+![Song comparison tab example](./assets/song_comparison.png "This plot displays polar graph that compares two songs in multiple attributes.")
+
 
 ## 5 Discussion
 
