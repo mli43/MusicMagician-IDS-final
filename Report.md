@@ -100,29 +100,49 @@ One highlight of this section is our incorporation of network visualizations. A 
 ## 4 Results
 
 ### 4.3 Data by Song
+The visualizations we produced in thie page help with exploring the relationship
+of different numerical characteristics of different songs. 
+
 
 #### 4.3.1 Overview tab:
-This is the correlation matrix shown in the overview tab. 
+This is the correlation matrix shown in the overview tab. This graph, although
+static, contains condensed information that clearly shows the relationshp
+between different features in the entire dataset. This visualization can answer
+the priliminary question of what factors of music are closely correlated.
 
 ![](eda_notebooks/images/full_music_corr.png "This plot displays the correlation between numeric features in the dataset")
+
 
 #### 4.3.2 Song Ranking tab:
 This is an example of the visualization created in the song ranking tab for top
 songs ranking. The date range for this graph is from 2000-1-11 to 2020-6-16,
-with a k of 15 and a maximum popularity of 94.
+with a k of 15 and a maximum popularity of 94. 
+
 ![Song ranking tab top song example](./assets/top_15_songs_2000_2020.png "This plot displays the top 15 songs fron 2000-1-11 to 2020-6-16.")
 
 This is an example of the visualization created in the song ranking tab for
 bottom songs ranking. The date range for this graph is from 2000-1-11 to
 2020-6-16, with a k of 15 and a minimum popularity of 10.
+
 ![Song ranking tab bottom song example](./assets/bottom_15_songs_2000_2020.png "This plto displays the bottom 15 least popular songs from 2000-1-11 to 2022-6-16 with a popularity of at least 10.")
 
+The song rankings graphs allow the users to have a clear sense of what the
+popular music are. The graph also dynamically display the relevant information
+including popuarity and year for each song if the user hover over the bar for
+the song. By having the top ranking songs and bottom ranking songs side by side,
+it allows the user to investigate the difference beteween popular songs and
+unpopular ones. It allows the user to discover the trends themselves.
+
+
 #### 4.3.3 Song comparison tab:
+This tab offers the user the oppotunity to dive deep into the differences in characteristic of individual songs. It allows the user to select songs and compare their detailed characteristics. The application will also dynamically display the popularity of the hovered song. This allows the user to investigate how songs with different popularity differ exactly in terms of their characteristics, which allows the user to explore the how features affect a song's popularity.
+
 This is an example of the visualization created in the song comparison tab. The
 two songs chosen are "Stuck with U (with Justin Bieber) by ['Ariana Grande',
 'Justin Bieber']" and "I Know You Care by ['Ellie Goulding']". The reason for
 choosing the two songs is because they have distinct characteristics and show up
 very differently in song ranking.
+
 ![Song comparison tab example](./assets/song_comparison.png "This plot displays polar graph that compares two songs in multiple attributes.")
 
 

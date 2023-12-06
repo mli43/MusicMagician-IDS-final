@@ -111,7 +111,7 @@ with tab2:
             alt.X("popularity:Q"),
             alt.Y("song_title (censored):N", sort=("-x")),
             fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="greenblue")),
-            tooltip=["song_title (censored)", "popularity", "artist_names"]
+            tooltip=["song_title (censored)", "artist_names", "popularity", "year"]
         ).transform_window(
             rank="rank(popularity)",
             sort=[alt.SortField("popularity", order="ascending")]
@@ -127,7 +127,7 @@ with tab2:
             alt.X("popularity:Q"),
             alt.Y("song_title (censored):N", sort=("x")),
             fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="darkred")),
-            tooltip=["song_title (censored)", "popularity", "artist_names"]
+            tooltip=["song_title (censored)", "artist_names", "popularity", "year"]
         ).transform_window(
             rank="rank(popularity)",
             sort=[alt.SortField("popularity", order="ascending")]
@@ -162,7 +162,7 @@ with tab3:
     for song in songs:
         song_row = comp_subset[comp_subset['song_artist'] == song].squeeze()
 
-        plot_data.append(go.Scatterpolar(r=song_row[cols].to_list(), theta=cols, fill="toself", name=song_row["song_artist"]))
+        plot_data.append(go.Scatterpolar(r=song_row[cols].to_list(), theta=cols, fill="toself", name=song_row["song_artist"], text=f"Popularity: {str(song_row['popularity'])}"))
 
     fig = go.Figure(
         data=plot_data,
