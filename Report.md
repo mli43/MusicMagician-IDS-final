@@ -159,7 +159,39 @@ One highlight of this section is our incorporation of network visualizations. A 
 ## 4 Results
 
 ### 4.1 Data by Year
-<TODO>
+The time series in this dataset highlight trend changes in certain music characteristics
+over the years. We present two interesting insights from this section below.
+
+#### 4.1.1 The Rise of Electronic Music
+One of the strongest trends we observed in this dataset is how sharply the feature
+acousticness dropped starting around the 1950s. Acousticness is defined as the creation
+of sound solely through non-electronic instruments, so the first hypothesis for this
+trend change that we investigated was when the first eletronic musical instruments
+were developed. We found that while the advent of electronic synthesizers occurred in
+the 1940s, the 1950s onwards was when these new electronic means of creating music
+began to catch on and permeate throughout the music industry. This seemed to strongly
+affirm our hypothesis, and we also looked into features like energy and instrumentalness
+that we thought would also be impacted by this new technology. While the trend changes
+in these features were not as strong as the trend change in acousticness, they were definitely
+present.
+
+![](./assets/screenshot1.png "This line chart displays how the features energy, acousticness, and instrumentalness changed over time.")
+
+#### 4.1.2 More and More Explicit
+Another interesting and drastic trend we noticed was how rapidly and steeply the proportion
+of songs containing explicitness increased over the last three to four decades. The numbers
+displayed are actually likely an underestimation since the dataset flags each song with a
+boolean value of 1 if explicitness is detected and 0 if no explicitness is detected or
+explicitness is uncertain; because of this uncertainty, underestimation of these proportions
+is very likely. We hypothesize that this change occurred due to a combination of factors, 
+the most impactful of which could be Western culture's increasing acceptance of more graphic
+topics. However, from listening to older music, we observe that older music utilizes euphemisms
+more frequently than outright explicitness; we postulate then that cultural liberalism plays a
+significant role in the stark increase in explicitness that we see in this data in
+addition to strong shifts in topics in music.
+
+![](./assets/screenshot2.png "This line chart displays the sharp increase in proportion of songs containing explicitness.")
+
 
 ### 4.2 Data by Artist
 
