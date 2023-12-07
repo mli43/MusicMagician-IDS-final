@@ -91,7 +91,17 @@ a number of the features in this dataset to display on one chart in the time ran
 of their choice. To standardize the scale of this plot, we limit the 
 choices of features to those with a range of 0 to 1. 
 
-### Data by Artists
+### Data by Artist
+This section summarizes details of the design choices, techniques, and algorithms we developed for the aggregated data on artists in the full music dataset.
+
+#### 3.2.1 Data Cleaning and Preparation
+In the [data_by_artist.csv](https://drive.google.com/file/d/1GYkZtooVod1tjLVtspyj5hIKscgrwT3A/view?usp=drive_link) file, while all the values in the artist_id columns were distinct, the associated column values were the same. That is, the same artist was assigned multiple artist_id values. This duplication was discovered by running a profiler and inspecting the report. Subsequently, the 41 artists for whom the data was duplicated were cleaned to keep the first data instance. This changed the number of data points from 5854 rows × 16 columns to 5810 rows × 16 columns. Please look into the [EDA_data_by_artist.ipynb](./eda_notebooks/EDA_data_by_artist.ipynb) notebook to review the entire EDA process with profiling, cleaning, and visualizations. The cleaned data file was saved as [cleaned_data_by_artist.csv](https://drive.google.com/file/d/1bJRKXG0wm7QNhmXMgQ7U1HQEzgYl0EAU/view?usp=drive_link).
+
+#### 3.2.2 Key Techniques & Page Design
+The "Data by Artist" interactive page allows you to explore the artists in the dataset and the characteristics of their music. This page features three tabs for users to interact with and a tab to view the underlying data. The first tab provides a simple overview of the details of a single artist based on the user’s choice. The dropdown & search bar lets the user understand the musical attributes influencing a particular artist's songs. The second tab allows users to compare these musical attributes for multiple artists, up to 8 at a time. It also visually captures their popularity ranking to help users understand what characteristics of music tend to be audience favorites, leading to a better popularity score. The third tab lets users query the dataset's top k and bottom k artists based on their popularity scores.
+
+### 3.2.3 Visualization Highlight
+The pair plot visualization featuring the bar and radar charts for top k and bottom k artists uncover the relationship between the characteristics of music that reflect a high popularity score. The top artists focus on gearing their music towards high energy and danceability while the unpopular artists tend to have high values of acouticness and valence.
 
 ### 3.3 Data by Song
 This section summarizes our steps for data cleaning, design choices, and developing a Streamlit application for the Data by Song page. 
@@ -148,7 +158,9 @@ One highlight of this section is our incorporation of network visualizations. A 
 
 ## 4 Results
 
-### 4.2 Data by Artists
+### 4.1 Data by Year
+
+### 4.2 Data by Artist
 
 ### 4.3 Data by Song
 The visualizations we produced on this page help with exploring the relationship
