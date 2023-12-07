@@ -37,8 +37,31 @@ values of all songs in the dataset released in the same year. Below, we discuss
 the content shown on this page and the design of its layout.
 
 #### 3.1.1 Page Content
+This page was meant to be more of an informative / educational one rather than
+one focused on interactive visualizations as this particular dataset was limited
+in how much granularity it contained. We focused on the strongest trends we
+observed in this dataset through EDA and dedicated a visualization to each trend
+followed by an explanation of the events or developments in certain time periods
+that may have contributed to those trend changes. We discussed the rise of electronic
+music, dominant keys, changes in tempo and loudness, and a new feature we created
+from the full dataset called "explicitness" which measures the proportion of songs
+from each year which contain explicit lyrics. 
 
 #### 3.1.2 Page Design
+This page contains six difent visualizations, each with an accompanying "Data" 
+tab so that the data plotted in each visualization is available to the user if they
+wish to use it without cluttering the page with tables.
+
+The first visualization illustrates the rapid and sustained changes in the features
+acousticness, energy, and instrumentalness in the decades between the 1950s and 1980s.
+The plot is followed by our hypothesis of what caused this trend. This format of
+plot-explanation pairings is repeated for the next four visualizations that
+display loudness, tempo, explicitness, and frequency of musical keys, respectively.
+
+The last visualization on this page is an interactive one where the user can select
+a number of the features in this dataset to display on one chart in the time range
+of their choice. In order to standardize the scale of this plot, we limit the 
+choices of features to those with a range of 0 to 1. 
 
 ### 3.3 Data by Song
 In this section, we summarize the steps we took for data cleaning, design choices, and developing Streamlit application for the Data by Song page. 
