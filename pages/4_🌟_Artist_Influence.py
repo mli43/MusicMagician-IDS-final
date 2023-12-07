@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import networkx as nx 
+import plotly.express as px
 from streamlit_agraph import agraph, Node, Edge, Config
 
 df = pd.read_csv('Data/influence_data.csv')
@@ -17,7 +18,6 @@ c1,c2,c3 = st.columns(3)
 
 
 
-
 with c1:
     year_tuple = st.slider('Time period to focus on:', df['influencer_active_start'].min(), df['influencer_active_start'].max(), (df['influencer_active_start'].min(), df['influencer_active_start'].max()) )
 
@@ -25,12 +25,12 @@ with c2:
     top_g = st.number_input('Top N genres to focus on:', 1, 10, 7)
 
 with c3:
-    top_num = st.number_input('Top N influencers to focus on:', 1, df['influencer_name'].nunique(), 11)
+    top_num = st.number_input('Top N influencers to focus on:', 1, df['influencer_name'].nunique(), 10)
 
 tab1, tab2, tab3 = st.tabs(['Overview', 'By Genre', 'By Artist'])
 # dataset preparation
 # first filter by time period
-df2 = df[(df['influencer_active_start']>= year_tuple[0]) & (df['influencer_active_start']<= year_tuple[1])]
+df2 = df[(df['influencer_active_start']>= year_tuple[0]) & (df['influencer_active_start']<= year_tuple[1])& (df['follower_active_start']>= year_tuple[0])& (df['follower_active_start']<= year_tuple[1])]
 
 inf = df2[['influencer_id','influencer_name','influencer_main_genre','influencer_active_start']].rename(columns = {'influencer_id':'id','influencer_name':'name','influencer_main_genre':'genre','influencer_active_start':'start'})
 #st.write('influencer data')
@@ -54,33 +54,52 @@ all_artists_dup = pd.concat([inf, flw])
 # we treat each id as a unit, to show the rise and fall of different genres
 id_genre = all_artists_dup[['id','genre']]
 id_genre_unique = id_genre.drop_duplicates()
-genre_counts = pd.read_csv('Data/genre_counts.csv')
+
+#st.write(id_genre_unique)
+#st.write(id_genre_unique['genre'].value_counts().reset_index().rename(columns = {'index':'genre', 'genre':'count'}))
+genre_counts = id_genre_unique['genre'].value_counts().reset_index()#.rename(columns = {'index':'genre', 'genre':'count'})
 
 #st.write('genre counts')
 #st.write(genre_counts)
 
 
 # hover your tooltip around each pie to see the genre!
+
 base = alt.Chart(genre_counts, title = 'Overall Distribution of Artist Genres').encode(
-    alt.Theta("genre:Q", stack=True),
-    alt.Color("index:N"),
-    tooltip=['index']
+    alt.Theta("count:Q", stack=True),
+    alt.Color("genre:N"),
+    tooltip=['genre','count']
 )
 
 pie = base.mark_arc(outerRadius=120)
+
 #text = base.mark_text(radius=200, size=10,radiusOffset=10).encode(text="index:N")
 
 with tab1:
-    st.altair_chart(pie)
+    
+    #st.altair_chart(pie)
+    fig = px.pie(genre_counts, values='count', names='genre',title='Overall Distribution of Artist Genres')
+    fig.update_layout(legend_title_text='Genre')
+    st.plotly_chart(fig, use_container_width=True)
+    st.write('🌟Hover your mouse around each slice to see the genre & count')
+    #st.write(genre_counts)
+    genre_chart = alt.Chart(genre_counts,title = f'Artist Counts in All Genres').mark_bar().encode(
+    alt.X('count:Q', title = 'Artist Count'),
+    y = alt.Y('genre:O', title = 'Genre').sort('-x')
+    ).properties(height = 700, width = 700)
+
+    st.altair_chart(genre_chart)
+    st.write('🌟Hover your mouse around each bar to see the genre & count')
+    
 
 
 with tab2:
 # Top 4 genres distribution
 
-
-    top4_genres = genre_counts.head(top_g)['index']
-    #st.write(genre_counts)
-    #st.write(top4_genres )
+    #st.write(genre_counts.head(top_g)['genre'])
+    top4_genres = genre_counts[:top_g]['genre'].values
+    #st.write('top 4 genres')
+    #st.write(top4_genres)
     id_genre_start = all_artists_dup[['id','genre','start']].drop_duplicates()
     id_genre_start_top4 = id_genre_start[id_genre_start['genre'].isin(top4_genres)]
     year_genre_counts = pd.pivot_table(id_genre_start_top4 , index = 'start',columns = 'genre', aggfunc = 'count').fillna(0)
@@ -114,20 +133,24 @@ with tab2:
 
     # Genre network
 
-    top4_genre_counts = genre_counts.head(top_g).set_index(['index'])
+    top4_genre_counts = genre_counts[:top_g]
+    #st.write('top 4 genre counts')
+    #st.write(top4_genre_counts)
 
 
     top4_genre_viz = top4_genre_counts.reset_index()
+    #st.write(top4_genre_viz )
     #st.write(topn_viz)
     top4_genre_chart = alt.Chart(top4_genre_viz,title = f'Artist Counts in Top {top_g} Genres').mark_bar().encode(
-        alt.X('genre:Q', title = 'Artist Count'),
-        y = alt.Y('index:O', title = 'Genre').sort('-x')
+        alt.X('count:Q', title = 'Artist Count'),
+        y = alt.Y('genre:O', title = 'Genre').sort('-x')
 
         ).properties(height = 400, width = 700)
 
     st.altair_chart(top4_genre_chart)
 
     st.altair_chart(areas)
+
 
     nodesg = []
     edgesg = []
@@ -138,7 +161,7 @@ with tab2:
       nodesg.append(
                 Node(id = genre,
                     label = genre,
-                    size = 5+ top4_genre_counts.loc[genre]['genre']* 0.02,
+                    size = 5+ int(top4_genre_counts[top4_genre_counts['genre'] == genre]['count'])* 0.02,
                     #sshape = 'circularImage',
                     )
        )
@@ -163,8 +186,8 @@ with tab2:
                     )
             )
 
-    config1 = Config(width=500,
-                    height=400,
+    config1 = Config(width=600,
+                    height=500,
                     directed=True, 
                     physics=True, 
                     hierarchical=False,
@@ -173,38 +196,32 @@ with tab2:
                     )
 
     st.write(f"**Influence Dynamic Among Top {top_g} Genres**")
+    st.write('🌟Drag the network around to better see the influence')
 
     return_value_g = agraph(nodes=nodesg, 
           edges=edgesg, 
           config=config1)
-    st.write('🌟Drag the network around to better see the influence')
-
-
-
-
-#st.write('min year',year_tuple[0])
-#st.write('max year',year_tuple[1])
-
-#st.write('original len', len(df))
 
 with tab3:
 #st.write('year filtered len', len(df2))
-
-    #st.dataframe(df2['influencer_name'].value_counts())
-    influencer_counts = pd.read_csv('Data/influencer_count.csv')
-    topn_inf = pd.DataFrame(df2['influencer_name'].value_counts().iloc[:top_num])
-    
-    topn_inf = topn_inf.rename(columns={'influencer_name':'count'})
+    influencer_counts = pd.DataFrame(df2['influencer_name'].value_counts()).reset_index()#.rename(columns = {'influencer_name':'count','index':'influencer_name'})
+    #influencer_counts = pd.read_csv('Data/influencer_count.csv')
+    #st.write('influencer counts')
+    #st.write(influencer_counts)
+    topn_inf = pd.DataFrame(influencer_counts.iloc[:top_num])
+    #st.write('topn_inf')
+    #st.write(topn_inf)
     #st.dataframe(topn_inf)
-    topn_data = df2[(df2['influencer_name'].isin(topn_inf.index)) & (df2['follower_name'].isin(topn_inf.index))]
+    topn_data = df2[(df2['influencer_name'].isin(topn_inf.influencer_name)) & (df2['follower_name'].isin(topn_inf.influencer_name))]
+    #st.write('topn_data')
+    #st.write(topn_data)
 
     #st.write('topn_inf')
     #st.write(topn_inf)
     #st.write('topn_data')
     #st.write(topn_data)
-    topn_viz = topn_inf.reset_index()
     #st.write(topn_viz)
-    topn_chart = alt.Chart(topn_viz, title = f"Top {top_num} Influencers and Their Follower Count").mark_bar().encode(
+    topn_chart = alt.Chart(topn_inf, title = f"Top {top_num} Influencers and Their Follower Count").mark_bar().encode(
         x = alt.X('count:Q', title = 'Follower Count'),
         y = alt.Y('influencer_name:O',title = 'Influencer Name').sort('-x')
 
@@ -212,14 +229,16 @@ with tab3:
 
     st.altair_chart(topn_chart)
 
+    #st.write(int(topn_inf[topn_inf['influencer_name'] == 'Bob Dylan']['count']))
+
     nodes = []
     edges = []
-
-    for name in topn_inf.index:
+    #st.write(topn_inf[topn_inf['influencer_name'] == 'The Beatles']['count'][0])
+    for name in topn_inf['influencer_name']:
         nodes.append(
                 Node(id = name,
                     label = name,
-                    size = 10 + topn_inf.loc[name]['count']* 0.05,
+                    size = 10 + int(topn_inf[topn_inf['influencer_name'] == name]['count'])* 0.05,
                     #sshape = 'circularImage',
                     )
             )
@@ -237,7 +256,8 @@ with tab3:
 
             
     st.write(f"**Influence Dynamics Among Top {top_num} Influencers**")
-    
+    st.write('')
+    st.write('🌟Drag the network around to better see the influence')
     config2 = Config(width=700,
                     height=500,
                     directed=True, 
@@ -245,31 +265,6 @@ with tab3:
                     hierarchical=False,
                     # **kwargs
                     )
-
     return_value = agraph(nodes=nodes, 
                           edges=edges, 
                           config=config2)
-    st.write('🌟Drag the network around to better see the influence')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

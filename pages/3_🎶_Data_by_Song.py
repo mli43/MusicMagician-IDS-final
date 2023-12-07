@@ -31,13 +31,11 @@ tab1, tab2, tab3 = st.tabs(['Overview', 'Song Ranking', 'Song Comparison'])
 with tab1:
     st.header("Dataset distribution")
     st.markdown("""
-        This tab is a static tab that shows the original dataset, and the overall dataset distribution, including the table containing the statistical information of the numerical features and their correlation matrix of the entire dataset""")
-
-    st.subheader("Originl Dataset")
-    st.dataframe(df)
-
-    st.subheader("Statistics of numerical features")
-    st.dataframe(df.describe())
+        This tab is a static tab that shows statistics of the original dataset,
+        including the correlation matrix of the numeric features in the
+        dataset, the entire original dataset, and statistics of numerical
+        features such as min, max, and standard deviation.
+        """)
 
     st.subheader("Correlation matrix of numerical features")
     st.markdown("""
@@ -58,6 +56,13 @@ with tab1:
     cb.ax.tick_params(labelsize=14)
 
     st.pyplot(f)
+
+
+    st.subheader("Originl Dataset")
+    st.dataframe(df)
+
+    st.subheader("Statistics of numerical features")
+    st.dataframe(df.describe())
 
 
 
