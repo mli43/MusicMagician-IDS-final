@@ -251,8 +251,8 @@ with tab4:
     st.dataframe(df_artist)
     st.dataframe(df_artist.describe())
     
-    df_filtered = df_artist[df_artist["popularity"] == 0]
+    # df_filtered = df_artist[df_artist["popularity"] == 0]
     
-    st.title("Artists with Popularity score 0")
-    st.dataframe(df_filtered)
+    # st.title("Artists with Popularity score 0")
+    # st.dataframe(df_filtered)
     
