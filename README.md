@@ -68,6 +68,7 @@ to a comprehensive understanding of the multifaceted aspects of music over time.
 * **Proposal**: [Project proposal Markdown](Proposal.md)
 * **Proposal**: [Project Proposal Google Drive](https://docs.google.com/document/d/12_InTimLdOuIm3lGfAHxmgSYuEV3K-SWiDrrchgJ_KY/edit?usp=sharing)
 
+The team regularly met to discuss, plan, and develop the design for the application. After splitting the workload, each member independently developed their components. Lastly, bugs were collaboratively fixed and documentations was collectively prepared.
 
 ### Proposal
 
