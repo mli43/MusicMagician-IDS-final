@@ -60,18 +60,16 @@ id_genre_unique = id_genre.drop_duplicates()
 genre_counts = id_genre_unique['genre'].value_counts().reset_index()#.rename(columns = {'index':'genre', 'genre':'count'})
 
 #st.write('genre counts')
+#st.write(genre_counts.index)
+#st.write(genre_counts['genre'])
 #st.write(genre_counts)
 
 
 # hover your tooltip around each pie to see the genre!
 
-base = alt.Chart(genre_counts, title = 'Overall Distribution of Artist Genres').encode(
-    alt.Theta("count:Q", stack=True),
-    alt.Color("genre:N"),
-    tooltip=['genre','count']
-)
 
-pie = base.mark_arc(outerRadius=120)
+
+#pie = base.mark_arc(outerRadius=120)
 
 #text = base.mark_text(radius=200, size=10,radiusOffset=10).encode(text="index:N")
 
@@ -186,25 +184,38 @@ with tab2:
                     )
             )
 
+    st.write(f"#### Influence Dynamic Among Top {top_g} Genres")
+    st.write('🌟Drag the network around to better see the influence')
+    on = st.toggle('Fix the genre network in place')
+
+    if on:
+        st.write('Network position fixed!')
+        phys = False
+    else:
+        st.write('Network position free to drag!')
+        phys = True
+
     config1 = Config(width=600,
                     height=500,
                     directed=True, 
-                    physics=True, 
+                    physics= phys, 
                     hierarchical=False,
-                    title = f"Influence Dynamic Among Top {top_g} Genres"
                     # **kwargs
                     )
 
-    st.write(f"**Influence Dynamic Among Top {top_g} Genres**")
-    st.write('🌟Drag the network around to better see the influence')
+    #st.write(f"**Influence Dynamic Among Top {top_g} Genres**")
+    
 
     return_value_g = agraph(nodes=nodesg, 
           edges=edgesg, 
           config=config1)
 
+
+
 with tab3:
 #st.write('year filtered len', len(df2))
     influencer_counts = pd.DataFrame(df2['influencer_name'].value_counts()).reset_index()#.rename(columns = {'influencer_name':'count','index':'influencer_name'})
+    #st.write(influencer_counts)
     #influencer_counts = pd.read_csv('Data/influencer_count.csv')
     #st.write('influencer counts')
     #st.write(influencer_counts)
@@ -258,13 +269,47 @@ with tab3:
     st.write(f"**Influence Dynamics Among Top {top_num} Influencers**")
     st.write('')
     st.write('🌟Drag the network around to better see the influence')
+
+    on2 = st.toggle('Fix the artist network in place')
+
+    if on2:
+        st.write('Network position fixed!')
+        phys2 = False
+    else:
+        st.write('Network position free to drag!')
+        phys2 = True
+
     config2 = Config(width=700,
                     height=500,
                     directed=True, 
-                    physics=True, 
+                    physics=phys2, 
                     hierarchical=False,
                     # **kwargs
                     )
     return_value = agraph(nodes=nodes, 
                           edges=edges, 
                           config=config2)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

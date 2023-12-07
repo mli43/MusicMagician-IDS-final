@@ -1,6 +1,8 @@
 import streamlit as st
 
-st.title('Exploring Music Characteristics and Artist Relationships')
+st.title("Music Magician")
+
+st.header('Exploring Music Characteristics and Artist Relationships')
 
 st.subheader("Motivation")
 
