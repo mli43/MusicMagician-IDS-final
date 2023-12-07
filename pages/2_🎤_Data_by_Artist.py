@@ -13,7 +13,7 @@ import altair as alt
 
 st.header("Data by Artist")
 
-st.markdown("This interactive page allows you to explore information about the different artists in the dataset. The first tab gives you a summary of the song characteristics of a single artist, the second tab lets you compare song characteristics of several artists (upto 8) and, the third tab lets you visualize the top and bottom k (max. 25) artists based on popularity scores. This page is a work in progress, subject to change based on feedback.")
+st.markdown("This interactive page allows you to explore information about the different artists in the dataset. The second page of our application explores the artists in the dataset and the characteristics of their music. This page features three tabs for users to interact with and a tab to view the underlying data. The first tab provides a simple overview of the details of a single artist based on the user’s choice. The dropdown & searchbar lets the user understand the musical attributes influencing a particular artist's songs. The second tab allows users to compare these musical attributes for multiple artists, up to 8 at a time. It also visually captures their popularity ranking to help users understand what characteristics of music tend to be audience favorites, leading to a better popularity score. The third tab lets users query the dataset's top k and bottom k artists based on their popularity scores.")
 
 # Load Data
 df_artist = pd.read_csv("./processed-data/cleaned_data_by_artist.csv")
