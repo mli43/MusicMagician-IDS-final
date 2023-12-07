@@ -208,6 +208,21 @@ This network graph helps us answer the question, "How does one genre influence t
 This network graph allows us to answer the question, "Who has been the most dynamic influencer?" According to the network, The Beatles has been the central influence on many top artists such as David Bowie, Jimi Hendrix, etc. On the other hand, Hank Williams is a relatively "isolated" artist focusing on Country music, only influencing Bob Dylan among the top 10 artists.
 
 ## 5 Discussion
+This project addresses a fascinating and complex challenge: understanding the evolution and influence of music over time using a rich dataset. The organization of our Streamlit application into four main sections (Data by Year, Data by Artist, Data by Song, and Artist Influence) attempts to reflect a comprehensive approach to exploring various aspects of the music dataset.
+
+The `Data by Year" section provides historical context and explanations for significant trends observed in the dataset. This approach visualizes the data and educates the user about the potential influences on music characteristics over different decades. The inclusion of interactive visualizations and the ability for users to select features and time ranges adds depth to the exploration.
+
+The "Data by Song" section showcases a well-structured and user-friendly interface with three tabs for an overview, song ranking, and song comparison. Including statistics, correlation matrices, and dynamic visualizations using Altair and Plotly enhances the user experience. As a design choice, we limit the number of songs for comparison for aesthetic reasons.
+
+The "Artist Influence" section leverages influencer-follower relationships and incorporates interactive network visualizations. We intended to capture the depth of artist-music influence dynamics by including both genre and artist networks.
+
+In terms of what the audience has learned from our work, the application provides insights into trends in music characteristics over time, the popularity of artists and songs, and the dynamics of influencer-follower relationships in the music industry. Users can gain a deeper understanding of how different factors contribute to the evolution of music and explore the interconnectedness of artists and genres.
+
+Incorporating various Python libraries such as pandas, matplotlib, Altair, Plotly, and "streamlit-agraph" demonstrates a diverse technical approach. The documentation of data cleaning, design choices, and development steps adds transparency to our methodology.
+
+To gather more formal feedback and insights about our system, we would consider conducting user surveys or interviews to understand how users interact with your application, what they find most valuable, and future improvement areas. Additionally, monitoring user engagement metrics within the application upon public deployment, such as the most accessed sections or features, can provide valuable insights into user preferences.
+
+Overall, our project was intended to be a comprehensive and insightful exploration of the evolution and influence of music, offering users a rich and interactive experience to uncover patterns, correlations, and influential factors between artists in the world of music.
 
 ## 6 Future Work
 In the future, we will improve our application in the following directions.
