@@ -46,26 +46,12 @@ with tab1:
             showlegend=True
         )
     )
-    
-    # Ref: https://discuss.streamlit.io/t/change-font-size-in-st-write/7606/2
-    # st.markdown("""
-    # <style>
-    # .big-font {
-    #     font-size:50px !important;
-    #     text-align: center
-    # }
-    # </style>
-    # """, unsafe_allow_html=True)
-
-    # st.markdown('<p class="big-font">Hello World !!</p>', unsafe_allow_html=True)
-    
-    
-    # col2.title(artist_row["artist_name"])
 
     st.plotly_chart(fig)
     
     col1, col2, col3 = st.columns([1, 2, 1])
     
+    # Ref: https://medium.com/codefile/streamlit-text-gets-colourful-d92c21ab8cf6
     with col1:
         st.markdown(f"""**Tempo :blue[{artist_row['tempo']}] Loudness :green[{artist_row['loudness']}] Mode :orange[{artist_row['mode']}]**""")
     
@@ -178,7 +164,7 @@ with tab3:
         alt.X("popularity:Q", title="Artist Popularity Score"),
         alt.Y("artist_name:N", title="Artist Name", sort=("-x")),
         # alt.Color("popularity:Q"),
-        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="goldgreen")),
+        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="goldgreen"), legend=alt.Legend(orient="bottom")),
         tooltip=["artist_name", "popularity", "count"]
 
     ).transform_window(
@@ -196,7 +182,7 @@ with tab3:
         alt.X("popularity:Q", title="Artist Popularity Score"),
         alt.Y("artist_name:N", title="Artist Name", sort=("x")),
         # alt.Color("popularity:Q"),
-        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="purplered")),
+        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="purplered"), legend=alt.Legend(orient="bottom")),
         tooltip=["artist_name", "popularity", "count"]
 
     ).transform_window(
@@ -205,9 +191,6 @@ with tab3:
     ).transform_filter(
         (alt.datum.rank <= k)
     )
-
-    st.altair_chart(fig1, use_container_width=True)
-    st.altair_chart(fig2, use_container_width=True)
     
     top_plot_data=list()
     
@@ -243,6 +226,12 @@ with tab3:
         )
     )
     
+    with col1:
+        st.altair_chart(fig1, use_container_width=True)
+    
+    with col2: 
+        st.altair_chart(fig2, use_container_width=True)
+        
     st.plotly_chart(fig_top)
     st.plotly_chart(fig_bottom)
     
