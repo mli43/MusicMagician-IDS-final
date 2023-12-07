@@ -71,7 +71,7 @@ the sidebar. A brief description of the pages are as follows:
       individual songs freely in more details, and allow the user to compare
       characteristics of different songs
 - Artist Influence
-    - add description here
+    - In this page, we explore influence dynamics on genre and artist level respectively. We provide users with flexibility to choose the time period/top genres/top artists of their interest and interactivity to play with the network. 
 """
 )
 

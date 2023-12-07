@@ -196,10 +196,32 @@ very differently in song ranking.
 
 ![Song comparison tab example](./assets/song_comparison.png "This plot displays polar graph that compares two songs in multiple attributes.")
 
+### 4.4 Influence Data
+The visualizations your system produces and any data to help evaluate your approach. For example, you might describe a case study that illustrates how your visualization(s) or algorithm(s) address your chosen problem.
+#### 4.4.1 Overview tab
+![overview tab example](./assets/t11.png "A pie chart displaying genre distribution for all artists")
+This graph answers the question "what is the mainstream genre during a particular period of time?" To find the answer, use the slide bar to fix a period of time, and observe the majority genres in the pie chart. We could see, for instance, "Pop/Rock" has been an overall mainstream genre of music.
+#### 4.4.2 By Genre tab
+![overview tab example](./assets/t21.png "A horizontal bar chart displaying artist counts in top n genres")
+This bar chart give us a more quantitative overview of top n genre distribution. With it, we could answer questions such as "Is there an overwhelming genre? If so, how many times is it larger than the second popular genre?" During 1930-2010, for instance, we could observe that "Pop/Rock" is such a majority class that it has more than 5 times of artists than the second popular genre "R&B".
+![overview tab example](./assets/t22.png "A stacked distribution chart displaying count of artists over time across genres")
+This stacked distribution chart helps us answer questions such as "What is the development trend of a genre? And when did it reach a peak?" Take "Pop/Rock" for instance, it accelerated the increase during 1950-1960, reached a plateau during 1960-1970, and surged to a peak around 1990. It then displays a decreasing trend yet still maintains the dominant genre.
+![overview tab example](./assets/t23.png "An interactive network graph displaying genre influence")
+This network graph helps us answer "How does one genre influence the other?" For instance, when we focus on top 7 genres, the mainstream genre "Pop/Rock" influences every other genre. While a less popular genre, "Electronic", influence every other genre except "Vocal", "Jazz", and "Country".
+
+#### 4.4.3 By Artist tab
+![overview tab example](./assets/t32.png "An interactive network graph displaying artist influence")
+This network graph allows us to answer "Who has been the most dynamic influencer?" According to the network, The Beatles has been the central influence on many top artists such as David Bowie, Jimi Hendrix, etc. Hank Williams, on the other hand, is a relatively "isolated" artist focusing on Country music, only influencing Bob Dylan among the top 10 artists.
 
 ## 5 Discussion
 
 ## 6 Future Work
+In the future, we would improve our application in the following directions.
+For the data by year dataset, social & historic background would be incorporated with current time series analysis to show the relationship between social events and major music revolution.
+For the data by artist dataset, we discover that the same artist could correspond to multiple main genres and start years. Could this indicate an artist's style shift throughout his/her career? We could look closer to visualize and analyze who has been the most dynamic artist with most versatile styles.
+For the data by song dataset, we could cluster the songs by their principal attributes and inspect the clusters to find high level patterns. What makes a cluster distinct? Are the songs in one cluster sharing the time period, artist, or style? Would this cluster overlap with the artist genre classes?
+For the music influence data, we could extend by adding artist image in the network nodes. To do this, we could either search for a comprehensive database with artist-image url data, or scrape the web for artist images. In addition, we could find some ways to incorporate genre into the artist network. For instance, using differen colors for the nodes to denote the genres. This would merge both genre and artist information to give a more holistic view.
+
 
 ## 7 Reference
 
@@ -211,3 +233,14 @@ Get tracks’ audio features. Web API Reference | Spotify for Developers. (n.d.)
 2021 ICM Problem D - Mathmodels.org. Mathmodels.org. (n.d.). https://mathmodels.org/Problems/2021/ICM-D/2021_ICM_Problem_D.pdf 
 
 Wikimedia Foundation. (2023, November 19). Synthesizer. Wikipedia. https://en.wikipedia.org/wiki/Synthesizer 
+
+ChrisDelClea. (n.d.). GitHub - ChrisDelClea/streamlit-agraph: A Streamlit Graph Vis. GitHub. https://github.com/ChrisDelClea/streamlit-agraph
+
+pandas.pivot_table — pandas 2.1.3 documentation. (n.d.). https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html
+
+pandas.DataFrame.melt — pandas 2.1.3 documentation. (n.d.). https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.melt.html#pandas.DataFrame.melt
+
+altair.Row — Vega-Altair 5.2.0 documentation. (n.d.). https://altair-viz.github.io/user_guide/generated/channels/altair.Row.html
+
+plotly.express.pie —  5.18.0 documentation. (n.d.). https://plotly.com/python-api-reference/generated/plotly.express.pie
+
