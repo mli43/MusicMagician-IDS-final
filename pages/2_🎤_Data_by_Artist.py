@@ -77,6 +77,12 @@ with tab1:
     
 with tab2:
     
+    df_filtered = df_artist[df_artist["popularity"] == 0]
+    zero_pop_artists = df_filtered["artist_name"].to_list()
+    # print(zero_pop_artists)
+    
+    df_artist = df_artist[df_artist["popularity"] > 0]
+    
     artist_choices = st.multiselect("Choose artist from list:",
                  df_artist["artist_name"].sort_values(),
                  placeholder="Choose artist",
@@ -202,6 +208,43 @@ with tab3:
 
     st.altair_chart(fig1, use_container_width=True)
     st.altair_chart(fig2, use_container_width=True)
+    
+    top_plot_data=list()
+    
+    top_pop_artists = top_k_df["artist_name"].to_list()
+
+    for artist_choice in top_pop_artists:
+        artist_row = top_k_df[top_k_df["artist_name"] == artist_choice].squeeze()
+        top_plot_data.append(go.Scatterpolar(r=artist_row[cols].to_list(), theta=cols, fill="toself", name=artist_row["artist_name"]))
+
+    fig_top = go.Figure(
+        data=top_plot_data,
+        layout=go.Layout(
+            title=go.layout.Title(text=""),
+            polar={"radialaxis": {"visible": True}},
+            showlegend=True
+        )
+    )
+    
+    bottom_plot_data=list()
+    
+    bottom_pop_artists = bottom_k_df["artist_name"].to_list()
+
+    for artist_choice in bottom_pop_artists:
+        artist_row = bottom_k_df[bottom_k_df["artist_name"] == artist_choice].squeeze()
+        bottom_plot_data.append(go.Scatterpolar(r=artist_row[cols].to_list(), theta=cols, fill="toself", name=artist_row["artist_name"]))
+
+    fig_bottom = go.Figure(
+        data=bottom_plot_data,
+        layout=go.Layout(
+            title=go.layout.Title(text=""),
+            polar={"radialaxis": {"visible": True}},
+            showlegend=True
+        )
+    )
+    
+    st.plotly_chart(fig_top)
+    st.plotly_chart(fig_bottom)
     
 with tab4:
     st.title("Artist Data All")
