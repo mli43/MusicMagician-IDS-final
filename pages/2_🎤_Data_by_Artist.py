@@ -18,12 +18,12 @@ st.markdown("This interactive page allows you to explore information about the d
 # Load Data
 df_artist = pd.read_csv("./processed-data/cleaned_data_by_artist.csv")
 
-st.dataframe(df_artist)
-st.dataframe(df_artist.describe())
+# st.dataframe(df_artist)
+# st.dataframe(df_artist.describe())
 
 # Separate Tabs
 
-tab1, tab2, tab3 = st.tabs(["Single Artist Overview", "Artist Comparison", "Top & Bottom K Artists"])
+tab1, tab2, tab3, tab4 = st.tabs(["Single Artist Overview", "Artist Comparison", "Top & Bottom K Artists", "Data"])
 
 
 with tab1:
@@ -46,8 +46,34 @@ with tab1:
             showlegend=True
         )
     )
+    
+    # Ref: https://discuss.streamlit.io/t/change-font-size-in-st-write/7606/2
+    # st.markdown("""
+    # <style>
+    # .big-font {
+    #     font-size:50px !important;
+    #     text-align: center
+    # }
+    # </style>
+    # """, unsafe_allow_html=True)
+
+    # st.markdown('<p class="big-font">Hello World !!</p>', unsafe_allow_html=True)
+    
+    
+    # col2.title(artist_row["artist_name"])
 
     st.plotly_chart(fig)
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col1:
+        st.markdown(f"""**Tempo :blue[{artist_row['tempo']}] Loudness :green[{artist_row['loudness']}] Mode :orange[{artist_row['mode']}]**""")
+    
+    with col2:
+        st.title(artist_row["artist_name"])
+        
+    with col3:
+        st.markdown(f"""**Popularity :rainbow[{artist_row['popularity']}] Duration_ms :violet[{artist_row['duration_ms']}] Key :red[{artist_row['key']}]**""")
     
 with tab2:
     
@@ -55,7 +81,7 @@ with tab2:
                  df_artist["artist_name"].sort_values(),
                  placeholder="Choose artist",
                  max_selections=8,
-                 default=["Taylor Swift", "Frank Sinatra", "El Guincho"])
+                 default=["Frank Sinatra", "El Guincho", "Justin Timberlake", "The Flying Lizards", "Pixinguinha", "Billie Eilish", "*NSYNC"])
     
     # print(artist_choices)
     
@@ -68,7 +94,7 @@ with tab2:
         plot_data.append(go.Scatterpolar(r=artist_row[cols].to_list(), theta=cols, fill="toself", name=artist_row["artist_name"]))
 
     
-    fig = go.Figure(
+    fig1 = go.Figure(
         data=plot_data,
         layout=go.Layout(
             title=go.layout.Title(text=""),
@@ -77,34 +103,76 @@ with tab2:
         )
     )
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig1, use_container_width=True)
+    
+    # st.dataframe(df_artist[df_artist["artist_name"].isin(artist_choices)])
+    
+    df_filtered = df_artist[df_artist["artist_name"].isin(artist_choices)]
+    # st.dataframe(df_filtered)
+    
+    k = df_filtered.shape[0]
+
+    fig2 = alt.Chart(
+        df_filtered,
+        title=f"Popularity Ranking of Selected Artists",
+        # width="container"
+    ).mark_bar().encode(
+        alt.X("popularity:Q", title="Artist Popularity Score"),
+        alt.Y("artist_name:N", title="Artist Name", sort=("-x")),
+        # alt.Color("popularity:Q"),
+        # fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="magma")),
+        tooltip=["artist_name", "popularity", "count"]
+
+    ).transform_window(
+        rank="rank(popularity)",
+        sort=[alt.SortField("popularity", order="descending")]
+    ).transform_filter(
+        (alt.datum.rank <= k)
+    )
+    
+    st.altair_chart(fig2, use_container_width=True)
+    
+    st.write("🌟 Click on the legend of the artists to enable or disable the overlay on the chart")
+    st.write("🌟 You can double-click on the the legend to focus on the radar chart of a single artist")
+    st.write("🌟 Use the icon on the top-right of the chart to enter full-screen mode")
     
 with tab3:
     
-    df_filtered = df_artist[df_artist["popularity"] != 0]
+    col1, col2 = st.columns(2)
     
-    k = st.slider("Choose k", min_value=1, max_value=25, value=10)
+    df_filtered = df_artist[df_artist["popularity"] > 0]
+    
+    # choice of k
+    k = col1.slider("Choose k (top/bottom):", min_value=1, max_value=25, value=10)
+    
+    # limit popularity range
+    pop = col2.slider("Choose popularity score range:",
+                int(df_filtered['popularity'].min()),
+                int(df_filtered['popularity'].max()),
+                (int(df_filtered['popularity'].min()), int(df_filtered['popularity'].max()))
+            )
+    
+    df_filtered = df_filtered.query("@pop[0] <= popularity <= @pop[1]")
     
     # most popular
-    
     top_k_df = df_filtered.sort_values(by="popularity", ascending=False).head(k) 
     
+    # bottom k - unpopular
     bottom_k_df = df_filtered.sort_values(by="popularity", ascending=False).tail(k)
     
     # print(top_k_df)
     # print(bottom_k_df)
     
-    col1, col2 = st.columns(2)
-    
     # REF: https://altair-viz.github.io/gallery/top_k_items.html
     fig1 = alt.Chart(
         top_k_df,
-        title=f"Top {k} Popular Artists"
+        title=f"Top {k} Popular Artists",
+        # width="container"
     ).mark_bar().encode(
-        alt.X("popularity:Q"),
-        alt.Y("artist_name:N", sort=("-x")),
+        alt.X("popularity:Q", title="Artist Popularity Score"),
+        alt.Y("artist_name:N", title="Artist Name", sort=("-x")),
         # alt.Color("popularity:Q"),
-        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="greenblue")),
+        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="goldgreen")),
         tooltip=["artist_name", "popularity", "count"]
 
     ).transform_window(
@@ -113,17 +181,16 @@ with tab3:
     ).transform_filter(
         (alt.datum.rank <= k)
     )
-    
-    col1.altair_chart(fig1)
     
     fig2 = alt.Chart(
         bottom_k_df,
-        title=f"Bottom {k} UnPopular Artists"
+        title=f"Bottom {k} UnPopular Artists",
+        # width="container"
     ).mark_bar().encode(
-        alt.X("popularity:Q"),
-        alt.Y("artist_name:N", sort=("x")),
+        alt.X("popularity:Q", title="Artist Popularity Score"),
+        alt.Y("artist_name:N", title="Artist Name", sort=("x")),
         # alt.Color("popularity:Q"),
-        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="darkred")),
+        fill=alt.Color("popularity:Q", scale=alt.Scale(scheme="purplered")),
         tooltip=["artist_name", "popularity", "count"]
 
     ).transform_window(
@@ -132,6 +199,17 @@ with tab3:
     ).transform_filter(
         (alt.datum.rank <= k)
     )
-    
-    col2.altair_chart(fig2)
 
+    st.altair_chart(fig1, use_container_width=True)
+    st.altair_chart(fig2, use_container_width=True)
+    
+with tab4:
+    st.title("Artist Data All")
+    st.dataframe(df_artist)
+    st.dataframe(df_artist.describe())
+    
+    df_filtered = df_artist[df_artist["popularity"] == 0]
+    
+    st.title("Artists with Popularity score 0")
+    st.dataframe(df_filtered)
+    

@@ -16,7 +16,7 @@ perspective, and artist influence.
 There are a number of interesting questions that we think our dataset and our
 visualizations can help to answer. 
 1. What are some major trend changes that have occurred in music over the past century?
-2. 
+2. How does the music of different artists vary in terms of song characteristics? How do these characteristics affect popularity?
 3. Does the individual song's characteristic affect its popularity?
 4. How does one genre influence the other? What are the most impactful artists in music history and how do they interact?
 """
@@ -64,7 +64,10 @@ the sidebar. A brief description of the pages are as follows:
     provide the user with the opportunity to examine these time series in more
     detail through a customizable graph.
 - Data by Artist
-    - add description here
+    - In this page, we explore and compare different artists based on their music.
+    We provide the user with the opportunity to examine the prevalent musical characteristics
+    (danceability, energy, valence, acousticness, instrumentalness, liveness, speechiness, etc) of artists freely.
+    Additionally, we also let users explore how these characteristics vary based on popularity score.
 - Data by Song
     - In this page, we explore and compare different characteristics of the
       full music dataset. We provide the user with the opportunity to examine
