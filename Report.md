@@ -65,7 +65,7 @@ values of all songs in the dataset released in the same year. Below, we discuss
 the content shown on this page and the layout design.
 
 #### 3.1.1 Page Content
-This page was meant to be more of an informative / educational one rather than
+This page was meant to be more of an informative/educational one rather than
 one focused on interactive visualizations as this particular dataset was limited
 in how much granularity it contained. We focused on the strongest trends we
 observed in this dataset through EDA and dedicated a visualization to each trend
@@ -73,7 +73,7 @@ followed by an explanation of the events or developments in certain time periods
 that may have contributed to those trend changes. We discussed the rise of electronic
 music, dominant keys, changes in tempo and loudness, and a new feature we created
 from the full dataset called "explicitness," which measures the proportion of songs
-from each year which contain explicit lyrics. 
+from each year, which contain explicit lyrics. 
 
 #### 3.1.2 Page Design
 This page contains six different visualizations, each with an accompanying "Data" 
@@ -101,7 +101,7 @@ In the [data_by_artist.csv](https://drive.google.com/file/d/1GYkZtooVod1tjLVtspy
 The "Data by Artist" interactive page allows you to explore the artists in the dataset and the characteristics of their music. This page features three tabs for users to interact with and a tab to view the underlying data. The first tab provides a simple overview of the details of a single artist based on the user’s choice. The dropdown & search bar lets the user understand the musical attributes influencing a particular artist's songs. The second tab allows users to compare these musical attributes for multiple artists, up to 8 at a time. It also visually captures their popularity ranking to help users understand what characteristics of music tend to be audience favorites, leading to a better popularity score. The third tab lets users query the dataset's top k and bottom k artists based on their popularity scores.
 
 ### 3.2.3 Visualization Highlight
-The pair plot visualization featuring the bar and radar charts for top k and bottom k artists uncover the relationship between the characteristics of music that reflect a high popularity score. The top artists focus on gearing their music towards high energy and danceability while the unpopular artists tend to have high values of acouticness and valence.
+The pair plot visualization featuring the bar and radar charts for top k and bottom k artists uncovers the relationship between the characteristics of music that reflect a high popularity score. The top artists focus on gearing their music towards high valence, energy, and danceability, while the unpopular artists tend to have high values of acouticness, instrumentalness, and valence.
 
 ### 3.3 Data by Song
 This section summarizes our steps for data cleaning, design choices, and developing a Streamlit application for the Data by Song page. 
@@ -154,13 +154,23 @@ The influence dataset proves to be pretty neat without null values or duplicates
 Among various data manipulation techniques, the most creative must be the "pivot-melt" approach for constructing the "Artist Population In Top N Genres Over Time", a stacked distribution chart. Pivot table is an efficient technique to re-structure our data frame so that one of its column contents may be pivoted as the row, making subtotal/total summary extra convenient. After we obtain this summary pivot table, we "melt" it to conform to the input standard of Altair, reformating a wide data frame to a long one. These transformations make our analysis flexible and efficient. 
 
 #### 3.4.3 Visualization Highlight
-One highlight of this section is our incorporation of network visualizations. A network is a graph consisting of nodes and edges. Our research shows various ways to visualize a network via libraries such as "networkx", "pyvis", etc. To cater to the interactive nature of our app, however, we choose a library that 1) is compatible with Streamlit 2) is fun to interact with. "streamlit-agraph" perfectly meets our criteria. It not only allows users to add nodes and edges with customized attributes but also provides an interactive interface where users could "drag" the network around to inspect the details. We implemented networks for both genres and artists for the audience to fully explore the dynamics.
+One highlight of this section is our incorporation of network visualizations. A network is a graph consisting of nodes and edges. Our research shows various ways to visualize a network via libraries such as "networkx", "pyvis", etc. To cater to the interactive nature of our app, however, we choose a library that 1) is compatible with Streamlit 2) is fun to interact with. "streamlit-agraph" perfectly meets our criteria. It allows users to add nodes and edges with customized attributes and provides an interactive interface where users can "drag" the network around to inspect the details. We implemented networks for both genres and artists for the audience to fully explore the dynamics.
 
 ## 4 Results
 
 ### 4.1 Data by Year
+<TODO>
 
 ### 4.2 Data by Artist
+
+#### 4.2.1 Single Artist Overview
+
+
+#### 4.2.2 Artist Comparison
+
+
+#### 4.2.3 Top & Bottom k Artists
+
 
 ### 4.3 Data by Song
 The visualizations we produced on this page help with exploring the relationship
@@ -171,7 +181,7 @@ of different numerical characteristics of different songs.
 This is the correlation matrix shown in the overview tab. This graph, although
 static, contains condensed information that clearly shows the relationship
 between different features in the entire dataset. This visualization can answer
-the preliminary question of what factors of music are closely correlated.
+the preliminary question of what music factors are closely correlated.
 
 ![](eda_notebooks/images/full_music_corr.png "This plot displays the correlation between numeric features in the dataset")
 
