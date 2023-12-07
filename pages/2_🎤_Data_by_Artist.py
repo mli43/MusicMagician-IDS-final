@@ -220,7 +220,7 @@ with tab3:
     fig_top = go.Figure(
         data=top_plot_data,
         layout=go.Layout(
-            title=go.layout.Title(text=""),
+            title=go.layout.Title(text=f"Top {k} Artists"),
             polar={"radialaxis": {"visible": True}},
             showlegend=True
         )
@@ -237,7 +237,7 @@ with tab3:
     fig_bottom = go.Figure(
         data=bottom_plot_data,
         layout=go.Layout(
-            title=go.layout.Title(text=""),
+            title=go.layout.Title(text=f"Bottom {k} Artists"),
             polar={"radialaxis": {"visible": True}},
             showlegend=True
         )
