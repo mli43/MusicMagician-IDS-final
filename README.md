@@ -6,6 +6,39 @@
   * yitianx2@andrew.cmu.edu
   * ndhanase@andrew.cmu.edu
   * epguo@andrew.cmu.edu
+  
+### Summary Image (Gif)
+
+![Gif - Step 3](./assets/04-final-summary.gif)
+
+## Abstract
+The data science problem addressed in this project is the exploration and understanding
+of the evolution of music over time using a curated dataset from the Interdisciplinary
+Contest in Modeling (ICM) for Problem D in 2021. The dataset encompasses various
+characteristics of music, such as acousticness, energy, instrumentalness, loudness,
+tempo, explicitness, and frequency of musical keys, among others. The objective is
+to gain insights into music trends, artist characteristics, and the influence of
+past music on new compositions.
+
+The Streamlit application developed for this purpose consists of four main sections:
+Data by Year, Data by Artist, Data by Song, and Music Influence. In the Data by Year
+section, informative visualizations are presented to highlight trends and changes
+in music characteristics over different decades, accompanied by explanations of
+significant events influencing these trends. The Data by Artists section provides a
+characteristic overview of each artist, allows comparison between artists, and
+ranks artists by greatest and smallest popularity. The Data by Song section allows users
+to explore the dataset comprehensively through three tabs, offering an overview of
+the dataset, ranking songs based on popularity, and comparing individual songs across
+various attributes. The Music Influence section delves into influencer-follower
+relationships among artists, employing innovative techniques such as the "pivot-melt"
+approach for constructing stacked distribution charts and incorporating interactive
+network visualizations.
+
+Our solution effectively addresses the problem by providing a user-friendly interface
+that facilitates in-depth exploration of the dataset, enabling users to uncover patterns,
+correlations, and influential factors in the realm of music. The incorporation of
+diverse visualizations and interactivity enhances the user experience and contributes
+to a comprehensive understanding of the multifaceted aspects of music over time.
 
 ## Installation
 ### Prerequisites
@@ -51,7 +84,3 @@
 - [ ] ~~Update the **Online URL** above to point to your deployed project.~~
 - [x] A detailed [project report](Report.md).  Each student should submit the URL that points to this file in their github repo on Canvas.
 - [x] A 5 minute video demonstration.  Upload the video to this github repo and link to it from your report.
-
-### Summary Image (Gif)
-
-![Gif - Step 3](./assets/04-final-summary.gif)
