@@ -164,13 +164,16 @@ One highlight of this section is our incorporation of network visualizations. A 
 ### 4.2 Data by Artist
 
 #### 4.2.1 Single Artist Overview
-
+This tab summarizes the prevalent musical characteristics observed in the songs of the artist (user choice).
+![](./assets/01-final-tab1.gif)
 
 #### 4.2.2 Artist Comparison
-
+This tab allows users to compare the musical characteristics of multiple artists (upto 8 at a time) simultaneously and understand their relationship to popularity.
+![](./assets/01-final-tab2.gif)
 
 #### 4.2.3 Top & Bottom k Artists
-
+This tab allows users to visualize the top k and bottom k artists in the dataset according to user input (max. 25). It also attempts to visually capture what attributes of music characteristics are similar among the popular and unpopular artists.
+![](./assets/01-final-tab3.gif)
 
 ### 4.3 Data by Song
 The visualizations we produced on this page help with exploring the relationship
