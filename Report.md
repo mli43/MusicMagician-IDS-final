@@ -91,6 +91,8 @@ a number of the features in this dataset to display on one chart in the time ran
 of their choice. To standardize the scale of this plot, we limit the 
 choices of features to those with a range of 0 to 1. 
 
+### Data by Artists
+
 ### 3.3 Data by Song
 This section summarizes our steps for data cleaning, design choices, and developing a Streamlit application for the Data by Song page. 
 
@@ -145,6 +147,8 @@ Among various data manipulation techniques, the most creative must be the "pivot
 One highlight of this section is our incorporation of network visualizations. A network is a graph consisting of nodes and edges. Our research shows various ways to visualize a network via libraries such as "networkx", "pyvis", etc. To cater to the interactive nature of our app, however, we choose a library that 1) is compatible with Streamlit 2) is fun to interact with. "streamlit-agraph" perfectly meets our criteria. It not only allows users to add nodes and edges with customized attributes but also provides an interactive interface where users could "drag" the network around to inspect the details. We implemented networks for both genres and artists for the audience to fully explore the dynamics.
 
 ## 4 Results
+
+### 4.2 Data by Artists
 
 ### 4.3 Data by Song
 The visualizations we produced on this page help with exploring the relationship
@@ -208,19 +212,15 @@ This network graph helps us answer the question, "How does one genre influence t
 This network graph allows us to answer the question, "Who has been the most dynamic influencer?" According to the network, The Beatles has been the central influence on many top artists such as David Bowie, Jimi Hendrix, etc. On the other hand, Hank Williams is a relatively "isolated" artist focusing on Country music, only influencing Bob Dylan among the top 10 artists.
 
 ## 5 Discussion
-This project addresses a fascinating and complex challenge: understanding the evolution and influence of music over time using a rich dataset. The organization of our Streamlit application into four main sections (Data by Year, Data by Artist, Data by Song, and Artist Influence) attempts to reflect a comprehensive approach to exploring various aspects of the music dataset.
 
-The `Data by Year" section provides historical context and explanations for significant trends observed in the dataset. This approach visualizes the data and educates the user about the potential influences on music characteristics over different decades. The inclusion of interactive visualizations and the ability for users to select features and time ranges adds depth to the exploration.
+### What new insights or practices has our system enabled?
+This project addresses the challenge of understanding music's evolution and artists' influencer-follower dynamics over time. The organization of our Streamlit application into four main sections (Data by Year, Data by Artist, Data by Song, and Artist Influence) reflects a comprehensive approach to exploring various aspects of the music dataset. The "Data by Year" section provides historical context and explanations for significant trends observed in the dataset. This approach visualizes the data and educates the user about the potential influences on music characteristics over different decades. The inclusion of interactive visualizations and the ability for users to select features and time ranges adds depth to the exploration. The "Data by Artist" page captures the information about the different artists in the dataset, summarizing the song characteristics of a single artist, comparing the musical characteristics of several artists, and visualizing the top and bottom k artists along with the impact of their prevalent musical characteristics on popularity scores. The "Data by Song" section showcases a well-structured and user-friendly interface with three tabs for an overview, song ranking, and song comparison. Including statistics, correlation matrices, and dynamic visualizations using Altair and Plotly enhances the user experience. The "Artist Influence" section leverages influencer-follower relationships and incorporates interactive network visualizations. We intended to capture the depth of artist-music influence dynamics by including genre and artist networks.
 
-The "Data by Song" section showcases a well-structured and user-friendly interface with three tabs for an overview, song ranking, and song comparison. Including statistics, correlation matrices, and dynamic visualizations using Altair and Plotly enhances the user experience. As a design choice, we limit the number of songs for comparison for aesthetic reasons.
-
-The "Artist Influence" section leverages influencer-follower relationships and incorporates interactive network visualizations. We intended to capture the depth of artist-music influence dynamics by including both genre and artist networks.
-
+### What has the audience learned from our work? 
 In terms of what the audience has learned from our work, the application provides insights into trends in music characteristics over time, the popularity of artists and songs, and the dynamics of influencer-follower relationships in the music industry. Users can gain a deeper understanding of how different factors contribute to the evolution of music and explore the interconnectedness of artists and genres.
 
-Incorporating various Python libraries such as pandas, matplotlib, Altair, Plotly, and "streamlit-agraph" demonstrates a diverse technical approach. The documentation of data cleaning, design choices, and development steps adds transparency to our methodology.
-
-To gather more formal feedback and insights about our system, we would consider conducting user surveys or interviews to understand how users interact with your application, what they find most valuable, and future improvement areas. Additionally, monitoring user engagement metrics within the application upon public deployment, such as the most accessed sections or features, can provide valuable insights into user preferences.
+### Informal observations of use that help evaluate our system
+Incorporating various Python libraries such as pandas, matplotlib, Altair, Plotly, and "streamlit-agraph" demonstrates a diverse technical approach. The documentation of data cleaning, design choices, and development steps adds transparency to our methodology. To gather more formal feedback and insights about our system, we would consider conducting user surveys or interviews to understand how users interact with your application, what they find most valuable, and future improvement areas. Additionally, monitoring user engagement metrics within the application upon public deployment, such as the most accessed sections or features, can provide valuable insights into user preferences.
 
 Overall, our project was intended to be a comprehensive and insightful exploration of the evolution and influence of music, offering users a rich and interactive experience to uncover patterns, correlations, and influential factors between artists in the world of music.
 
