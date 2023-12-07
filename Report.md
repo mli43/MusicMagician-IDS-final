@@ -202,3 +202,12 @@ very differently in song ranking.
 ## 6 Future Work
 
 ## 7 Reference
+
+Below are a list of references that includes our data source as well as websites
+we referenced for domain information.
+
+Get tracks’ audio features. Web API Reference | Spotify for Developers. (n.d.). https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features 
+
+2021 ICM Problem D - Mathmodels.org. Mathmodels.org. (n.d.). https://mathmodels.org/Problems/2021/ICM-D/2021_ICM_Problem_D.pdf 
+
+Wikimedia Foundation. (2023, November 19). Synthesizer. Wikipedia. https://en.wikipedia.org/wiki/Synthesizer 
