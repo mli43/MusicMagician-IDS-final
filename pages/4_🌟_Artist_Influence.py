@@ -57,7 +57,7 @@ id_genre_unique = id_genre.drop_duplicates()
 
 #st.write(id_genre_unique)
 #st.write(id_genre_unique['genre'].value_counts().reset_index().rename(columns = {'index':'genre', 'genre':'count'}))
-genre_counts = id_genre_unique['genre'].value_counts().reset_index().rename(columns = {'index':'genre', 'genre':'count'})
+genre_counts = id_genre_unique['genre'].value_counts().reset_index()#.rename(columns = {'index':'genre', 'genre':'count'})
 
 #st.write('genre counts')
 #st.write(genre_counts)
@@ -202,12 +202,9 @@ with tab2:
           edges=edgesg, 
           config=config1)
 
-
-
 with tab3:
 #st.write('year filtered len', len(df2))
-    influencer_counts = pd.DataFrame(df2['influencer_name'].value_counts()).reset_index().rename(columns = {'influencer_name':'count','index':'influencer_name'})
-    #st.write(influencer_counts)
+    influencer_counts = pd.DataFrame(df2['influencer_name'].value_counts()).reset_index()#.rename(columns = {'influencer_name':'count','index':'influencer_name'})
     #influencer_counts = pd.read_csv('Data/influencer_count.csv')
     #st.write('influencer counts')
     #st.write(influencer_counts)
@@ -271,27 +268,3 @@ with tab3:
     return_value = agraph(nodes=nodes, 
                           edges=edges, 
                           config=config2)
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
