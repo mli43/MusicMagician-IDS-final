@@ -68,12 +68,12 @@ to a comprehensive understanding of the multifaceted aspects of music over time.
 * **Proposal**: [Project proposal Markdown](Proposal.md)
 * **Proposal**: [Project Proposal Google Drive](https://docs.google.com/document/d/12_InTimLdOuIm3lGfAHxmgSYuEV3K-SWiDrrchgJ_KY/edit?usp=sharing)
 
-The team regularly met to discuss, plan, and develop the design for the application. After splitting the workload, each member independently developed their components. Lastly, bugs were collaboratively fixed and documentations was collectively prepared.
+The team regularly met to discuss, plan, and develop the design for the application. After splitting the workload, each member independently developed their components. Lastly, bugs were collaboratively fixed, and documentation was collectively prepared.
 
 ### Proposal
 
 - [x] The URL at the top of this readme needs to point to your application online. It should also list the names of the team members.
-- [x] A completed [proposal](Proposal.md). Each student should submit the URL that points to this file in their github repo on Canvas.
+- [x] A completed [proposal](Proposal.md). Each student should submit the URL that points to this file in their GitHub repo on Canvas.
 
 ### Sketches
 
