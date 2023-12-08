@@ -1,7 +1,8 @@
 # Final Project Report
 
-**Project URL**: TODO
-**Video URL**: TODO
+**Project URL** As mentioend on piazza, we don't need to deploy the project
+
+**Video URL** https://youtu.be/5e2C-uLXFgs
 
 ## Abstract
 
@@ -91,7 +92,7 @@ a number of the features in this dataset to display on one chart in the time ran
 of their choice. To standardize the scale of this plot, we limit the 
 choices of features to those with a range of 0 to 1. 
 
-### Data by Artist
+### 3.2 Data by Artist
 This section summarizes details of the design choices, techniques, and algorithms we developed for the aggregated data on artists in the full music dataset.
 
 #### 3.2.1 Data Cleaning and Preparation
